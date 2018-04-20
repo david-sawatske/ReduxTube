@@ -8,7 +8,7 @@ import { merge, union } from 'lodash';
 const searchedById = (state = {}, action) => {
   switch (action.type) {
   case RECEIVE_VIDEO_SEARCH:
-    return merge({}, getSearchData(action.searchResults.items).byId)
+    return merge({}, getSearchData(action.searchResults.items).byId, state)
   case VIDEO_ADD:
     return state.filter( vid => vid != action.video);
   case VIDEO_REMOVE:
@@ -21,7 +21,7 @@ const searchedById = (state = {}, action) => {
 const allSearchedIds = (state = [], action) => {
   switch (action.type) {
   case RECEIVE_VIDEO_SEARCH:
-    return merge({}, getSearchData(action.searchResults.items).allIds)
+    return union([], getSearchData(action.searchResults.items).allIds, state)
   default:
     return state;
   }
