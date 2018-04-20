@@ -19,16 +19,18 @@ class PlaylistShow extends Component {
 
   addVid(event, video) {
     event.preventDefault();
-    this.props.addVideo(video)
+    this.props.addVideo(video);
   }
 
   removeVid(event, video) {
     event.preventDefault();
-    this.props.removeVideo(video)
+    this.props.removeVideo(video);
   }
 
-  setVidIdx(newVidIdx, event) {
-    this.setState({ playlistIdx: newVidIdx })
+  setVidIdx(event, newVidIdx) {
+    event.preventDefault();
+
+    this.setState({ playlistIdx: newVidIdx });
   }
 
   render() {
@@ -59,7 +61,9 @@ class PlaylistShow extends Component {
           <VideoIndexItem video={video}
                           key={video.etag}
                           buttonDisplay="Remove"
-                          buttonFn={this.removeVid} />
+                          buttonFn={this.removeVid}
+                          setVidIdx={this.setVidIdx}
+                          videoIdx={playlist.indexOf(video)} />
         </li>
       )),
       HasPlayedIndex =
@@ -68,7 +72,9 @@ class PlaylistShow extends Component {
           <VideoIndexItem video={video}
                           key={video.etag}
                           buttonDisplay="Remove"
-                          buttonFn={this.removeVid} />
+                          buttonFn={this.removeVid}
+                          setVidIdx={this.setVidIdx}
+                          videoIdx={playlist.indexOf(video)} />
         </li>
       ))
     }
@@ -86,7 +92,7 @@ class PlaylistShow extends Component {
           { LivePlayer }
         </div>
 
-        {/* <SearchBar requestVideoSearch={this.props.requestVideoSearch} />
+        <SearchBar requestVideoSearch={this.props.requestVideoSearch} />
         <div className='searched'>
           <h1>Searched</h1>
           <h2>byId: {Object.keys(searchedById).length}</h2>
@@ -94,7 +100,7 @@ class PlaylistShow extends Component {
           <ul>
             { SearchedIndex }
           </ul>
-        </div> */}
+        </div>
 
         <div className='will-play'>
           <h1>BEFORE Playlist</h1>
