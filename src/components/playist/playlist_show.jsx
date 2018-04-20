@@ -86,15 +86,16 @@ class PlaylistShow extends Component {
                                  currentIndex={playlistIdx}
                                  setVidIdx={this.setVidIdx} />
                        </div>
-console.log(this.state.playlistIdx);
+
     return (
       <div className='playlist-container'>
         <div className='player'>
           { LivePlayer }
         </div>
 
-        <SearchBar requestVideoSearch={this.props.requestVideoSearch} />
         <div className='searched'>
+          <SearchBar requestVideoSearch={this.props.requestVideoSearch} />
+
           <ul>
             { SearchedIndex }
           </ul>
