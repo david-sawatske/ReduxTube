@@ -33,7 +33,9 @@ class PlaylistShow extends Component {
                                 .map(videoId => (
       <li className="searched-item">
         <VideoIndexItem key={videoId}
-                        video={searchedById[videoId]} />
+                        buttonFn={this.removeVid}
+                        video={searchedById[videoId]}
+                        buttonDisplay="Add to Playlist" />
       </li>
     ))
 
