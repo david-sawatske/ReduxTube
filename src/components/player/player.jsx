@@ -16,7 +16,7 @@ class Player extends React.Component {
         console.log('playing');
         break;
       case ENDED:
-        this.props.setVidIdx(this.props.currentIndex + 1)
+        this.props.setVidIdx(null, this.props.currentIndex + 1)
         break;
       default:
     }
@@ -34,8 +34,6 @@ class Player extends React.Component {
 
     this.player = new YT.Player('video-player', {
       videoId: videoId,
-      height: '360',
-      width: '640',
       controls: '1',
       playerVars: {
         controls: 1,

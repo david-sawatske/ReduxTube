@@ -28,7 +28,9 @@ class PlaylistShow extends Component {
   }
 
   setVidIdx(event, newVidIdx) {
-    event.preventDefault();
+    if (event) {
+      event.preventDefault();
+    }
 
     this.setState({ playlistIdx: newVidIdx });
   }
@@ -80,11 +82,11 @@ class PlaylistShow extends Component {
     }
 
     const LivePlayer = <div className='player'>
-                         <Player currentIndex={playlistIdx}
-                                 setVidIdx={this.setVidIdx}
-                                 videoId={currVideoId} />
+                         <Player videoId={currVideoId}
+                                 currentIndex={playlistIdx}
+                                 setVidIdx={this.setVidIdx} />
                        </div>
-
+console.log(this.state.playlistIdx);
     return (
       <div className='playlist-container'>
         <div className='player'>
