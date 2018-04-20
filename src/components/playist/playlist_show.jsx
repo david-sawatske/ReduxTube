@@ -10,10 +10,11 @@ class PlaylistShow extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { }
+    this.state = { playlistIdx: 0 }
 
     this.addVid = this.addVid.bind(this);
     this.removeVid = this.removeVid.bind(this);
+    this.setVidIdx = this.setVidIdx.bind(this);
   }
 
   addVid(event, video) {
@@ -24,6 +25,10 @@ class PlaylistShow extends Component {
   removeVid(event, video) {
     event.preventDefault();
     this.props.removeVideo(video)
+  }
+
+  setVidIdx(newVidIdx, event) {
+    this.setState({ playlistIdx: newVidIdx })
   }
 
   render() {
@@ -48,11 +53,21 @@ class PlaylistShow extends Component {
       </li>
     ))
 
+    let LivePlayer
+    const { playlistIdx } = this.state;
+    if (playlist[playlistIdx]) {
+      LivePlayer = <div className='player'>
+                     <h1>Player</h1>
+                     <Player currentIndex={playlistIdx}
+                             setVidIdx={this.setVidIdx}
+                             videoId={playlist[playlistIdx].id} />
+                   </div>
+    }
+
     return (
       <div className='playlist-container'>
         <div className='player'>
-          <h1>Player</h1>
-          <Player videoId="apLevp7QI8E" />
+          { LivePlayer }
         </div>
 
         <SearchBar requestVideoSearch={this.props.requestVideoSearch} />

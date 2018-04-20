@@ -13,11 +13,10 @@ class Player extends React.Component {
     const { PLAYING, ENDED } = YT.PlayerState;
     switch(data) {
       case PLAYING:
-      console.log('playing');
-
+        console.log('playing');
         break;
       case ENDED:
-        console.log('ended');
+        this.props.setVidIdx(this.props.currentIndex + 1)
         break;
       default:
     }
@@ -34,10 +33,10 @@ class Player extends React.Component {
     const { videoId } = this.props;
 
     this.player = new YT.Player('video-player', {
-      videoId: "apLevp7QI8E",
+      videoId: videoId,
       height: '360',
       width: '640',
-      controls: '0',
+      controls: '1',
       playerVars: {
         controls: 1,
       },
@@ -46,6 +45,16 @@ class Player extends React.Component {
         onStateChange: this.onPlayerStateChange,
       },
     });
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.videoId !== this.props.videoId) {
+      if (!this.player) {
+        this.initializePlayer();
+      } else {
+        this.player.loadVideoById(this.props.videoId);
+      }
+    }
   }
 
   render() {
