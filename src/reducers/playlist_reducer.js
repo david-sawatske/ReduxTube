@@ -5,6 +5,8 @@ import { VIDEO_REMOVE, VIDEO_ADD  } from '../actions/playlist_actions';
 const defState = [];
 
 const playlist = (state = defState, action) => {
+  Object.freeze(state)
+  
   switch (action.type) {
   case VIDEO_REMOVE:
     return state.filter( vid => vid != action.video);
