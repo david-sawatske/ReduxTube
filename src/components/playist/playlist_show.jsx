@@ -4,6 +4,7 @@ import { requestVideoSearch } from '../../actions/search_actions';
 
 import VideoIndexItem from './video_index_item';
 import SearchBar from '../search/search_bar';
+import Player from '../player/player';
 
 class PlaylistShow extends Component {
   constructor(props) {
@@ -49,6 +50,11 @@ class PlaylistShow extends Component {
 
     return (
       <div className='playlist-container'>
+        <div className='player'>
+          <h1>Player</h1>
+          <Player videoId="apLevp7QI8E" />
+        </div>
+
         <SearchBar requestVideoSearch={this.props.requestVideoSearch} />
         <div className='searched'>
           <h1>Searched</h1>
