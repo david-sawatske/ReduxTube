@@ -6,7 +6,8 @@ import { requestVideoSearch } from '../../actions/search_actions';
 import PlaylistShow from './playlist_show';
 
 const mapStateToProps = state => ({
-  searched: state.searched,
+  allSearchedIds: state.searched.allSearchedIds,
+  searchedById: state.searched.searchedById,
   playlist: state.playlist.playlist
 });
 
