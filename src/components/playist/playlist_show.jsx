@@ -26,21 +26,29 @@ class PlaylistShow extends Component {
   }
 
   render() {
-    const { searchedById, allSearchedIds } = this.props;
+    const { searchedById, allSearchedIds, playlist } = this.props;
 
-    const SearchedIndex = Object.keys(searchedById)
-                                .slice(0, 10)
-                                .map(videoId => (
+    const SearchedIndex = allSearchedIds.slice(0, 10)
+                                        .map(videoId => (
       <li className="searched-item">
         <VideoIndexItem key={videoId}
-                        buttonFn={this.removeVid}
+                        buttonFn={this.addVid}
                         video={searchedById[videoId]}
                         buttonDisplay="Add to Playlist" />
       </li>
     ))
 
+    const PlaylistIndex = playlist.map(video => (
+      <li className="searched-item">
+        <VideoIndexItem key={video.id}
+                        video={video}
+                        buttonFn={this.removeVid}
+                        buttonDisplay="Remove from Playlist" />
+      </li>
+    ))
+
     return (
-      <div id='base-container'>
+      <div className='playlist-container'>
         <SearchBar requestVideoSearch={this.props.requestVideoSearch} />
         <div className='searched'>
           <h1>Searched</h1>
@@ -48,6 +56,14 @@ class PlaylistShow extends Component {
           <h2>allIds: {allSearchedIds.length}</h2>
           <ul>
             { SearchedIndex }
+          </ul>
+        </div>
+
+        <div className='playlist'>
+
+          <h1>Playlist</h1>
+          <ul>
+            { PlaylistIndex }
           </ul>
         </div>
       </div>
