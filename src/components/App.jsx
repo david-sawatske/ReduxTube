@@ -5,7 +5,7 @@ import PlaylistShow from './playist/playlist_show_container';
 export default class App extends Component {
   render() {
     return (
-      <div>
+      <div className="app-container">
         <PlaylistShow />
       </div>
     );
