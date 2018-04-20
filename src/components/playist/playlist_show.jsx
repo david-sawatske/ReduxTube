@@ -33,6 +33,10 @@ class PlaylistShow extends Component {
 
   render() {
     const { searchedById, allSearchedIds, playlist } = this.props;
+    const { playlistIdx } = this.state;
+
+    const currVideoObj = playlist[playlistIdx];
+    const currVideoId = (currVideoObj) ? currVideoObj.id : null;
 
     const SearchedIndex = allSearchedIds.slice(0, 10)
                                         .map(videoId => (
@@ -44,25 +48,37 @@ class PlaylistShow extends Component {
       </li>
     ))
 
-    const PlaylistIndex = playlist.map(video => (
-      <li className="searched-item">
-        <VideoIndexItem key={video.id}
-                        video={video}
-                        buttonFn={this.removeVid}
-                        buttonDisplay="Remove from Playlist" />
-      </li>
-    ))
+    let WillPlayIndex;
+    let HasPlayedIndex;
+    if (playlist.length > 0) {
+      const afterPlaying = playlist.slice(0, playlistIdx)
+      const beforePlaying = playlist.slice(playlistIdx + 1)
 
-    let LivePlayer
-    const { playlistIdx } = this.state;
-    if (playlist[playlistIdx]) {
-      LivePlayer = <div className='player'>
-                     <h1>Player</h1>
-                     <Player currentIndex={playlistIdx}
-                             setVidIdx={this.setVidIdx}
-                             videoId={playlist[playlistIdx].id} />
-                   </div>
+      WillPlayIndex = beforePlaying.map(video => (
+        <li>
+          <VideoIndexItem video={video}
+                          key={video.etag}
+                          buttonDisplay="Remove"
+                          buttonFn={this.removeVid} />
+        </li>
+      )),
+      HasPlayedIndex =
+      afterPlaying.map(video => (
+        <li>
+          <VideoIndexItem video={video}
+                          key={video.etag}
+                          buttonDisplay="Remove"
+                          buttonFn={this.removeVid} />
+        </li>
+      ))
     }
+
+    const LivePlayer = <div className='player'>
+                         <h1>Player</h1>
+                         <Player currentIndex={playlistIdx}
+                                 setVidIdx={this.setVidIdx}
+                                 videoId={currVideoId} />
+                       </div>
 
     return (
       <div className='playlist-container'>
@@ -70,7 +86,7 @@ class PlaylistShow extends Component {
           { LivePlayer }
         </div>
 
-        <SearchBar requestVideoSearch={this.props.requestVideoSearch} />
+        {/* <SearchBar requestVideoSearch={this.props.requestVideoSearch} />
         <div className='searched'>
           <h1>Searched</h1>
           <h2>byId: {Object.keys(searchedById).length}</h2>
@@ -78,13 +94,19 @@ class PlaylistShow extends Component {
           <ul>
             { SearchedIndex }
           </ul>
+        </div> */}
+
+        <div className='will-play'>
+          <h1>BEFORE Playlist</h1>
+          <ul>
+            { WillPlayIndex }
+          </ul>
         </div>
 
-        <div className='playlist'>
-
-          <h1>Playlist</h1>
+        <div className='has-played'>
+          <h1>AFTER Playlist</h1>
           <ul>
-            { PlaylistIndex }
+            { HasPlayedIndex }
           </ul>
         </div>
       </div>
