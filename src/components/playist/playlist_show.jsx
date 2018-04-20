@@ -80,7 +80,6 @@ class PlaylistShow extends Component {
     }
 
     const LivePlayer = <div className='player'>
-                         <h1>Player</h1>
                          <Player currentIndex={playlistIdx}
                                  setVidIdx={this.setVidIdx}
                                  videoId={currVideoId} />
@@ -94,23 +93,18 @@ class PlaylistShow extends Component {
 
         <SearchBar requestVideoSearch={this.props.requestVideoSearch} />
         <div className='searched'>
-          <h1>Searched</h1>
-          <h2>byId: {Object.keys(searchedById).length}</h2>
-          <h2>allIds: {allSearchedIds.length}</h2>
           <ul>
             { SearchedIndex }
           </ul>
         </div>
 
         <div className='will-play'>
-          <h1>BEFORE Playlist</h1>
           <ul>
             { WillPlayIndex }
           </ul>
         </div>
 
         <div className='has-played'>
-          <h1>AFTER Playlist</h1>
           <ul>
             { HasPlayedIndex }
           </ul>
