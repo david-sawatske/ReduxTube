@@ -42,14 +42,15 @@ class SearchedIndex extends Component {
   render() {
     const { searchedById, allSearchedIds } = this.props;
     const {startSearchIdx } = this.state;
+    const iconId = "v1524351088/add_rm9k9r.png";
 
     let SearchedItems = allSearchedIds.slice(startSearchIdx, startSearchIdx + 5)
-                                        .map(videoId => (
+                                      .map(videoId => (
       <li className="searched-item">
         <VideoIndexItem key={videoId}
                         buttonFn={this.addVid}
                         video={searchedById[videoId]}
-                        buttonDisplay="Add to Playlist" />
+                        iconId={iconId} />
       </li>
     ))
 

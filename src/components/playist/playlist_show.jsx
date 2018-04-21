@@ -45,7 +45,6 @@ class PlaylistShow extends Component {
     const { willPlayClass } = this.state;
     const nextClass = (willPlayClass === 'will-play') ? 'will-play-all'
                                                          :
-
                                                         'will-play';
     let btnText = 'View All'
     if (willPlayClass === 'will-play') {
@@ -108,7 +107,7 @@ class PlaylistShow extends Component {
     return (
       <div className='playlist-container'>
         <div className='player'>
-          {/* { LivePlayer } */}
+          { LivePlayer }
         </div>
 
         <div className='will-play-all' >
