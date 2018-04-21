@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { findDOMNode } from 'react-dom';
-import $ from 'jquery';
 
 import { requestVideoSearch } from '../../actions/search_actions';
 
+import SearchedIndex from '../search/searched_index';
 import VideoIndexItem from './video_index_item';
 import SearchBar from '../search/search_bar';
 import Player from '../player/player';
@@ -12,11 +12,7 @@ class PlaylistShow extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { playlistIdx: 0,
-                   startSearchIdx: 0,
-                   disableSearchLeft: true,
-                   disableSearchRight: false }
-
+    this.state = { playlistIdx: 0 }
 
     this.addVid = this.addVid.bind(this);
     this.removeVid = this.removeVid.bind(this);
@@ -41,50 +37,12 @@ class PlaylistShow extends Component {
     this.setState({ playlistIdx: newVidIdx });
   }
 
-  setSearchIdx(event, direction) {
-    if (event) {
-      event.preventDefault();
-    }
-
-    const { startSearchIdx, disableSearchLeft } = this.state;
-    const searchedIndexLength = this.props.allSearchedIds.length;
-    const netChange = (direction === 'left') ? -5 : 5;
-    const remainingIdxItems = searchedIndexLength - startSearchIdx - netChange;
-    const stateChanges = {};
-
-    if (direction === 'right' && (remainingIdxItems > netChange)) {
-      stateChanges['disableSearchLeft'] = false;
-      stateChanges['startSearchIdx'] = startSearchIdx + netChange;
-    } else if (remainingIdxItems <= netChange) {
-      stateChanges['disableSearchRight'] = true;
-      stateChanges['startSearchIdx'] = startSearchIdx + netChange;
-    } else if (direction === 'left' && (startSearchIdx + netChange <= 0)) {
-      stateChanges['disableSearchLeft'] = true;
-      stateChanges['startSearchIdx'] = startSearchIdx + netChange;
-    } else if (direction === 'left') {
-      stateChanges['disableSearchRight'] = false;
-      stateChanges['startSearchIdx'] = startSearchIdx + netChange;
-    }
-
-    this.setState(stateChanges);
-  }
-
   render() {
     const { searchedById, allSearchedIds, playlist } = this.props;
-    const { playlistIdx, startSearchIdx } = this.state;
+    const { playlistIdx } = this.state;
 
     const currVideoObj = playlist[playlistIdx];
     const currVideoId = (currVideoObj) ? currVideoObj.id : null;
-
-    const SearchedIndex = allSearchedIds.slice(startSearchIdx, startSearchIdx + 5)
-                                        .map(videoId => (
-      <li className="searched-item">
-        <VideoIndexItem key={videoId}
-                        buttonFn={this.addVid}
-                        video={searchedById[videoId]}
-                        buttonDisplay="Add to Playlist" />
-      </li>
-    ))
 
     let WillPlayIndex;
     let HasPlayedIndex;
@@ -115,6 +73,12 @@ class PlaylistShow extends Component {
       ))
     }
 
+    let SearchedIdxDisplay
+    if (allSearchedIds.length > 0) {
+      SearchedIdxDisplay = <SearchedIndex searchedById={searchedById}
+                                     allSearchedIds={allSearchedIds} />
+    }
+
     const LivePlayer = <div className='player'>
                          <Player videoId={currVideoId}
                                  currentIndex={playlistIdx}
@@ -139,25 +103,9 @@ class PlaylistShow extends Component {
           </ul>
         </div>
 
-        <div className='searched'>
-          <h1> { this.props.allSearchedIds.length }</h1>
-          <SearchBar requestVideoSearch={this.props.requestVideoSearch} />
-          <button onClick={ (e) => this.setSearchIdx(e, 'left') }
-                  disabled={this.state.disableSearchLeft}
-                  className="nav-btn" >
-            LEFT
-          </button>
-          <ul>
-            { SearchedIndex }
-          </ul>
+        <SearchBar requestVideoSearch={this.props.requestVideoSearch} />
 
-          <button onClick={ (e) => this.setSearchIdx(e, 'right') }
-                  disabled={this.state.disableSearchRight}
-                  className="nav-btn" >
-            RIGHT
-          </button>
-
-        </div>
+        { SearchedIdxDisplay }
       </div>
     );
   }
