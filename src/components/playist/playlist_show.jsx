@@ -12,7 +12,9 @@ class PlaylistShow extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { playlistIdx: 0 }
+    this.state = { playlistIdx: 0,
+                   willPlayBtn: 'View All',
+                   willPlayClass: 'will-play' }
 
     this.addVid = this.addVid.bind(this);
     this.removeVid = this.removeVid.bind(this);
@@ -37,9 +39,26 @@ class PlaylistShow extends Component {
     this.setState({ playlistIdx: newVidIdx });
   }
 
+  toggleWillPlayClass(event) {
+    event.preventDefault();
+
+    const { willPlayClass } = this.state;
+    const nextClass = (willPlayClass === 'will-play') ? 'will-play-all'
+                                                         :
+
+                                                        'will-play';
+    let btnText = 'View All'
+    if (willPlayClass === 'will-play') {
+       btnText = '✘'
+    }
+
+    this.setState({ willPlayClass: nextClass,
+                    willPlayBtn: btnText })
+  }
+
   render() {
     const { searchedById, allSearchedIds, playlist } = this.props;
-    const { playlistIdx } = this.state;
+    const { playlistIdx, willPlayClass, willPlayBtn } = this.state;
 
     const currVideoObj = playlist[playlistIdx];
     const currVideoId = (currVideoObj) ? currVideoObj.id : null;
@@ -48,7 +67,7 @@ class PlaylistShow extends Component {
     let HasPlayedIndex;
     if (playlist.length > 0) {
       const afterPlaying = playlist.slice(0, playlistIdx)
-      const beforePlaying = playlist.slice(playlistIdx + 1)
+      const beforePlaying = playlist.slice(playlistIdx + 1, playlistIdx + 11)
 
       WillPlayIndex = beforePlaying.map(video => (
         <li ref="hovered">
@@ -91,10 +110,15 @@ class PlaylistShow extends Component {
           { LivePlayer }
         </div>
 
-        <div className='will-play'>
+        <div className={willPlayClass} >
           <ul>
             { WillPlayIndex }
           </ul>
+
+          <div className='class-toggle'
+               onClick={ (e) => this.toggleWillPlayClass(e) }>
+            <h1>{ willPlayBtn }</h1>
+          </div>
         </div>
 
         <div className='has-played'>
