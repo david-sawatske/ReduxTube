@@ -13,19 +13,14 @@ class PlaylistShow extends Component {
     super(props);
 
     this.state = { playlistIdx: 0,
-                   startSearchIdx: 0 }
+                   startSearchIdx: 0,
+                   disableSearchLeft: true,
+                   disableSearchRight: false }
+
 
     this.addVid = this.addVid.bind(this);
     this.removeVid = this.removeVid.bind(this);
     this.setVidIdx = this.setVidIdx.bind(this);
-  }
-
-  componentDidMount(e) {
-    const el = findDOMNode(this.refs.hovered);
-
-    $(el).on('click',function() {
-      $(el).nextAll().addClass("test")
-    })
   }
 
   addVid(event, video) {
@@ -47,10 +42,31 @@ class PlaylistShow extends Component {
   }
 
   setSearchIdx(event, direction) {
-    event.preventDefault();
-    const netChange = (direction === 'left') ? -1 : 1;
+    if (event) {
+      event.preventDefault();
+    }
 
-    this.setState({ startSearchIdx: (this.state.startSearchIdx + netChange) })
+    const { startSearchIdx, disableSearchLeft } = this.state;
+    const searchedIndexLength = this.props.allSearchedIds.length;
+    const netChange = (direction === 'left') ? -5 : 5;
+    const remainingIdxItems = searchedIndexLength - startSearchIdx - netChange;
+    const stateChanges = {};
+
+    if (direction === 'right' && (remainingIdxItems > netChange)) {
+      stateChanges['disableSearchLeft'] = false;
+      stateChanges['startSearchIdx'] = startSearchIdx + netChange;
+    } else if (remainingIdxItems <= netChange) {
+      stateChanges['disableSearchRight'] = true;
+      stateChanges['startSearchIdx'] = startSearchIdx + netChange;
+    } else if (direction === 'left' && (startSearchIdx + netChange <= 0)) {
+      stateChanges['disableSearchLeft'] = true;
+      stateChanges['startSearchIdx'] = startSearchIdx + netChange;
+    } else if (direction === 'left') {
+      stateChanges['disableSearchRight'] = false;
+      stateChanges['startSearchIdx'] = startSearchIdx + netChange;
+    }
+
+    this.setState(stateChanges);
   }
 
   render() {
@@ -124,16 +140,20 @@ class PlaylistShow extends Component {
         </div>
 
         <div className='searched'>
-          <h1> { this.state.startSearchIdx }</h1>
+          <h1> { this.props.allSearchedIds.length }</h1>
           <SearchBar requestVideoSearch={this.props.requestVideoSearch} />
-          <button className="nav-btn" onClick={ (e) => this.setSearchIdx(e, 'left') }>
+          <button onClick={ (e) => this.setSearchIdx(e, 'left') }
+                  disabled={this.state.disableSearchLeft}
+                  className="nav-btn" >
             LEFT
           </button>
           <ul>
             { SearchedIndex }
           </ul>
 
-          <button className="nav-btn" onClick={ (e) => this.setSearchIdx(e, 'right') }>
+          <button onClick={ (e) => this.setSearchIdx(e, 'right') }
+                  disabled={this.state.disableSearchRight}
+                  className="nav-btn" >
             RIGHT
           </button>
 
