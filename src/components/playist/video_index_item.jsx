@@ -3,39 +3,29 @@ import React, { Component } from 'react';
 class VideoIndexItem extends Component {
   constructor(props) {
     super(props);
-
-    this.state = { isHovered: false };
-
-    this.handleHover = this.handleHover.bind(this);
-  }
-
-  handleHover() {
-    this.setState({ isHovered: !this.state.isHovered })
   }
 
   render() {
-    const { video, setVidIdx, videoIdx, buttonFn, buttonDisplay } = this.props;
-    const divClass = (this.state.isHovered) ? "hovered" : "not-hovered";
+    const { video, setVidIdx, videoIdx, buttonFn, iconId } = this.props;
+    const iconURLBase = `http://res.cloudinary.com/sawatskeda10/image/upload/`;
+    const iconURL = iconURLBase + iconId;
 
     let PlayNow
     if (setVidIdx) {
-      PlayNow = <button className="nav-btn"
-                        onClick={ (e) => setVidIdx(e, videoIdx) }>
-                PlayNow
-              </button>
+      PlayNow = <img src={ iconURLBase + 'v1524351088/play_c5dbki.png'}
+                     className='play'
+                     alt='play'/>
     }
 
     return (
-      <div className={divClass}
-           onMouseEnter={this.handleHover}
-           onMouseLeave={this.handleHover} >
+      <div className='video-idx-item' >
+        <h2 className="video-title">{video.title}</h2>
+        <img src={video.thumbnail}
+             className="thumbnail" />
 
-          <img src={video.thumbnail} />
-          <h2>{video.title}</h2>
-
-          <button className="nav-btn" onClick={ (e) => buttonFn(e, video) }>
-            { buttonDisplay }
-          </button>
+        <img src={iconURL} onClick={ (e) => buttonFn(e, video) }
+                           className="add-remove"
+                           alt='Add/Remove' />
 
         { PlayNow }
       </div>

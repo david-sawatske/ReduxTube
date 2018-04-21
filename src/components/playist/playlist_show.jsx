@@ -66,14 +66,15 @@ class PlaylistShow extends Component {
     let WillPlayIndex;
     let HasPlayedIndex;
     if (playlist.length > 0) {
-      const afterPlaying = playlist.slice(0, playlistIdx)
-      const beforePlaying = playlist.slice(playlistIdx + 1, playlistIdx + 11)
+      const afterPlaying = playlist.slice(0, playlistIdx);
+      const beforePlaying = playlist.slice(playlistIdx + 1, playlistIdx + 11);
+      const iconId = "v1524351089/trash_lqysey.png";
 
       WillPlayIndex = beforePlaying.map(video => (
         <li ref="hovered">
           <VideoIndexItem video={video}
-                          key={video.etag}
-                          buttonDisplay="Remove"
+                          key={video.id}
+                          iconId={iconId}
                           buttonFn={this.removeVid}
                           setVidIdx={this.setVidIdx}
                           videoIdx={playlist.indexOf(video)} />
@@ -83,8 +84,8 @@ class PlaylistShow extends Component {
       afterPlaying.map(video => (
         <li>
           <VideoIndexItem video={video}
-                          key={video.etag}
-                          buttonDisplay="Remove"
+                          key={video.id}
+                          iconId={iconId}
                           buttonFn={this.removeVid}
                           setVidIdx={this.setVidIdx}
                           videoIdx={playlist.indexOf(video)} />
@@ -107,10 +108,10 @@ class PlaylistShow extends Component {
     return (
       <div className='playlist-container'>
         <div className='player'>
-          { LivePlayer }
+          {/* { LivePlayer } */}
         </div>
 
-        <div className={willPlayClass} >
+        <div className='will-play-all' >
           <ul>
             { WillPlayIndex }
           </ul>
