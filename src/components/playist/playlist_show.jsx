@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { findDOMNode } from 'react-dom';
+import $ from 'jquery';
 
 import { requestVideoSearch } from '../../actions/search_actions';
 
@@ -10,11 +12,20 @@ class PlaylistShow extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { playlistIdx: 0 }
+    this.state = { playlistIdx: 0,
+                   startSearchIdx: 0 }
 
     this.addVid = this.addVid.bind(this);
     this.removeVid = this.removeVid.bind(this);
     this.setVidIdx = this.setVidIdx.bind(this);
+  }
+
+  componentDidMount(e) {
+    const el = findDOMNode(this.refs.hovered);
+
+    $(el).on('click',function() {
+      $(el).nextAll().addClass("test")
+    })
   }
 
   addVid(event, video) {
@@ -35,14 +46,21 @@ class PlaylistShow extends Component {
     this.setState({ playlistIdx: newVidIdx });
   }
 
+  setSearchIdx(event, direction) {
+    event.preventDefault();
+    const netChange = (direction === 'left') ? -1 : 1;
+
+    this.setState({ startSearchIdx: (this.state.startSearchIdx + netChange) })
+  }
+
   render() {
     const { searchedById, allSearchedIds, playlist } = this.props;
-    const { playlistIdx } = this.state;
+    const { playlistIdx, startSearchIdx } = this.state;
 
     const currVideoObj = playlist[playlistIdx];
     const currVideoId = (currVideoObj) ? currVideoObj.id : null;
 
-    const SearchedIndex = allSearchedIds.slice(0, 10)
+    const SearchedIndex = allSearchedIds.slice(startSearchIdx, startSearchIdx + 5)
                                         .map(videoId => (
       <li className="searched-item">
         <VideoIndexItem key={videoId}
@@ -59,7 +77,7 @@ class PlaylistShow extends Component {
       const beforePlaying = playlist.slice(playlistIdx + 1)
 
       WillPlayIndex = beforePlaying.map(video => (
-        <li>
+        <li ref="hovered">
           <VideoIndexItem video={video}
                           key={video.etag}
                           buttonDisplay="Remove"
@@ -93,14 +111,6 @@ class PlaylistShow extends Component {
           { LivePlayer }
         </div>
 
-        <div className='searched'>
-          <SearchBar requestVideoSearch={this.props.requestVideoSearch} />
-
-          <ul>
-            { SearchedIndex }
-          </ul>
-        </div>
-
         <div className='will-play'>
           <ul>
             { WillPlayIndex }
@@ -111,6 +121,22 @@ class PlaylistShow extends Component {
           <ul>
             { HasPlayedIndex }
           </ul>
+        </div>
+
+        <div className='searched'>
+          <h1> { this.state.startSearchIdx }</h1>
+          <SearchBar requestVideoSearch={this.props.requestVideoSearch} />
+          <button className="nav-btn" onClick={ (e) => this.setSearchIdx(e, 'left') }>
+            LEFT
+          </button>
+          <ul>
+            { SearchedIndex }
+          </ul>
+
+          <button className="nav-btn" onClick={ (e) => this.setSearchIdx(e, 'right') }>
+            RIGHT
+          </button>
+
         </div>
       </div>
     );
