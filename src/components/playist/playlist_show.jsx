@@ -66,7 +66,11 @@ class PlaylistShow extends Component {
     let HasPlayedIndex;
     if (playlist.length > 0) {
       const afterPlaying = playlist.slice(0, playlistIdx);
-      const beforePlaying = playlist.slice(playlistIdx + 1, playlistIdx + 11);
+      const beforePlaying = (willPlayClass === 'will-play') ?
+                              playlist.slice(playlistIdx + 1, playlistIdx + 11)
+                               :
+                              playlist.slice(playlistIdx + 1)
+
       const iconId = "v1524351089/trash_lqysey.png";
 
       WillPlayIndex = beforePlaying.map(video => (
