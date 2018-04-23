@@ -12,9 +12,10 @@ class VideoIndexItem extends Component {
 
     let PlayNow
     if (setVidIdx) {
-      PlayNow = <img src={ iconURLBase + 'v1524351088/play_c5dbki.png'}
+      PlayNow = <img alt='play'
                      className='play'
-                     alt='play'/>
+                     onClick={ (e) => setVidIdx(e, videoIdx) }
+                     src={ iconURLBase + 'v1524351088/play_c5dbki.png'} />
     }
 
     return (
@@ -25,9 +26,10 @@ class VideoIndexItem extends Component {
         <img src={video.thumbnail}
              className="thumbnail" />
 
-        <img src={iconURL} onClick={ (e) => buttonFn(e, video) }
-                           className="add-remove"
-                           alt='Add/Remove' />
+        <img src={iconURL}
+             alt='Add/Remove'
+             className="add-remove"
+             onClick={ (e) => buttonFn(e, video) } />
 
         { PlayNow }
       </div>
