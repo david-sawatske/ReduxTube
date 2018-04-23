@@ -19,7 +19,9 @@ class VideoIndexItem extends Component {
 
     return (
       <div className='video-idx-item' >
-        <h2 className="video-title">{video.title}</h2>
+        <div className='title-container'>
+          <h2 className="video-title">{video.title}</h2>
+        </div>
         <img src={video.thumbnail}
              className="thumbnail" />
 

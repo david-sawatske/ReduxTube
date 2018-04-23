@@ -13,7 +13,7 @@ class PlaylistShow extends Component {
     super(props);
 
     this.state = { playlistIdx: 0,
-                   willPlayBtn: 'View All',
+                   willPlayText: 'View All',
                    willPlayClass: 'will-play' }
 
     this.addVid = this.addVid.bind(this);
@@ -46,18 +46,18 @@ class PlaylistShow extends Component {
     const nextClass = (willPlayClass === 'will-play') ? 'will-play-all'
                                                          :
                                                         'will-play';
-    let btnText = 'View All'
+    let clickText = 'View All'
     if (willPlayClass === 'will-play') {
-       btnText = '✘'
+       clickText = '✘'
     }
 
     this.setState({ willPlayClass: nextClass,
-                    willPlayBtn: btnText })
+                    willPlayText: clickText })
   }
 
   render() {
     const { searchedById, allSearchedIds, playlist } = this.props;
-    const { playlistIdx, willPlayClass, willPlayBtn } = this.state;
+    const { playlistIdx, willPlayClass, willPlayText } = this.state;
 
     const currVideoObj = playlist[playlistIdx];
     const currVideoId = (currVideoObj) ? currVideoObj.id : null;
@@ -95,7 +95,7 @@ class PlaylistShow extends Component {
     let SearchedIdxDisplay
     if (allSearchedIds.length > 0) {
       SearchedIdxDisplay = <SearchedIndex searchedById={searchedById}
-                                     allSearchedIds={allSearchedIds} />
+                                          allSearchedIds={allSearchedIds} />
     }
 
     const LivePlayer = <div className='player'>
@@ -110,14 +110,14 @@ class PlaylistShow extends Component {
           { LivePlayer }
         </div>
 
-        <div className='will-play-all' >
+        <div className={willPlayClass} >
           <ul>
             { WillPlayIndex }
           </ul>
 
           <div className='class-toggle'
                onClick={ (e) => this.toggleWillPlayClass(e) }>
-            <h1>{ willPlayBtn }</h1>
+            <h1 >{ willPlayText }</h1>
           </div>
         </div>
 
