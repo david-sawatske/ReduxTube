@@ -10,11 +10,8 @@ class Player extends React.Component {
   }
 
   onPlayerStateChange = ({ data }) => {
-    const { PLAYING, ENDED } = YT.PlayerState;
+    const { ENDED } = YT.PlayerState;
     switch(data) {
-      case PLAYING:
-        console.log('playing');
-        break;
       case ENDED:
         this.props.setVidIdx(null, this.props.currentIndex + 1)
         break;
@@ -36,7 +33,10 @@ class Player extends React.Component {
       videoId: videoId,
       controls: '1',
       playerVars: {
-        controls: 1,
+        rel: 0,
+        showinfo: 0,
+        iv_load_policy: 3,
+        modestbranding: 1,
       },
       events: {
         onReady: this.onPlayerReady,

@@ -8,6 +8,7 @@ const API_DATA = {
 export const fetchVideoSearch = term => (
   $.ajax({
     url : API_DATA.SEARCH_URL,
+    videoEmbeddable: true,
     data: {
       part      : 'id,snippet',
       fields    : 'items/id/videoId,items/snippet/title,items/snippet/description,items/snippet/thumbnails/high',
