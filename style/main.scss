@@ -536,15 +536,15 @@
 							margin-top: 1.5vh;
 						}
 
-						input[type=text] {
+						input[type="text"] {
 							grid-column: 1;
 							font-size: 3vh;
 						}
 
-						input[type=submit] {
+						input[type="image"] {
 							grid-column: 2;
-							margin-left: -1vw;
-							font-size: 3vh;
+							align-self: center;
+							width: 3vh;
 						}
 					}
 				}

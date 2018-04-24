@@ -37,8 +37,9 @@ class SearchBar extends Component {
             value={this.state.term}
             onChange={this.update('term')} />
 
-          <input type="submit"
-                 value=" 🔍 " />
+          <input type="image"
+                 name="submit"
+                 src="http://res.cloudinary.com/sawatskeda10/image/upload/v1524591921/search_qy6dny.png" />
         </form>
       </div>
     );
