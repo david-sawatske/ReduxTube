@@ -133,8 +133,7 @@ class PlaylistShow extends Component {
                                   onClick={ (e) => this.setSearchIdxClass(e) } >
                             { searchIdxText}
                           </button>
-  }
-
+    }
 
     const LivePlayer = <div className='player'>
                          <Player videoId={currVideoId}
