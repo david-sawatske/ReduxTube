@@ -12,7 +12,7 @@ class PlaylistShow extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { playlistIdx: 0,
+    this.state = { playlistIdx: 5,
                    willPlayText: 'View All',
                    willPlayClass: 'will-play' }
 
@@ -126,6 +126,9 @@ class PlaylistShow extends Component {
         </div>
 
         <div className='has-played'>
+          <div className='has-played-overlay'>
+            <h2>Previously Played</h2>
+          </div>
           <ul>
             { HasPlayedIndex }
           </ul>
