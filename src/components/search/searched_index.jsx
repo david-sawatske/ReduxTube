@@ -11,14 +11,6 @@ class SearchedIndex extends Component {
                    disableSearchRight: false };
   }
 
-
-    componentWillReceiveProps(nextProps) {
-      if (nextProps.searchIdxClass != this.props.searchIdxClass) {
-        console.log('teset');
-      }
-    }
-
-
   setSearchIdx(event, direction) {
     if (event) {
       event.preventDefault();
@@ -48,17 +40,18 @@ class SearchedIndex extends Component {
   }
 
   render() {
-    const { searchedById, allSearchedIds, searchIdxClass } = this.props;
+    const { searchedById, allSearchedIds,
+            searchIdxClass, buttonFn } = this.props;
     const {startSearchIdx } = this.state;
     const iconId = "v1524351088/add_rm9k9r.png";
 
     let SearchedItems = allSearchedIds.slice(startSearchIdx, startSearchIdx + 5)
                                       .map(videoId => (
       <li className="searched-item">
-        <VideoIndexItem key={videoId}
-                        buttonFn={this.addVid}
-                        video={searchedById[videoId]}
-                        iconId={iconId} />
+        <VideoIndexItem video={searchedById[videoId]}
+                        buttonFn={buttonFn}
+                        iconId={iconId}
+                        key={videoId} />
       </li>
     ))
 

@@ -125,10 +125,12 @@ class PlaylistShow extends Component {
     let ShowSearchIdxBtn
     if (allSearchedIds.length > 0) {
       SearchedIdxDisplay = <SearchedIndex searchedById={searchedById}
+                                          buttonFn={this.addVid}
                                           searchIdxClass={searchIdxClass}
                                           allSearchedIds={allSearchedIds} />
 
-      ShowSearchIdxBtn =  <button onClick={ (e) => this.setSearchIdxClass(e) } >
+      ShowSearchIdxBtn =  <button className='search-idx-btn'
+                                  onClick={ (e) => this.setSearchIdxClass(e) } >
                             { searchIdxText}
                           </button>
   }
