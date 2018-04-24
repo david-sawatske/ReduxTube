@@ -4,23 +4,21 @@ class SearchBar extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { term: 'beautiful timelapse' };
+    this.state = { term: '' };
 
     this.handleSubmit = this.handleSubmit.bind(this);
-  }
-
-  componentWillMount() {
-    const term = this.state.term;
-
-    this.props.requestVideoSearch(term);
   }
 
   handleSubmit(event) {
     event.preventDefault();
 
+    const { setSearchIdxClass, requestVideoSearch } = this.props;
+
     const term = this.state.term;
 
-    this.props.requestVideoSearch(term);
+    requestVideoSearch(term).then(() => {
+      setSearchIdxClass(null, true)
+    })
   }
 
   update(field) {

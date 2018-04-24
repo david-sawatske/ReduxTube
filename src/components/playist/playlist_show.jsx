@@ -13,12 +13,15 @@ class PlaylistShow extends Component {
     super(props);
 
     this.state = { playlistIdx: 5,
+                   searchIdxText: 'Hide Results',
+                   searchIdxClass: 'searched-hide',
                    willPlayText: 'View All',
                    willPlayClass: 'will-play' }
 
     this.addVid = this.addVid.bind(this);
     this.removeVid = this.removeVid.bind(this);
     this.setVidIdx = this.setVidIdx.bind(this);
+    this.setSearchIdxClass = this.setSearchIdxClass.bind(this);
   }
 
   addVid(event, video) {
@@ -55,9 +58,31 @@ class PlaylistShow extends Component {
                     willPlayText: clickText })
   }
 
+  setSearchIdxClass(event, booShow) {
+    if (booShow) {
+      this.setState({ searchIdxClass: 'searched-show' })
+      return
+    }
+
+    event.preventDefault();
+
+    const { searchIdxClass } = this.state;
+    const nextClass = (searchIdxClass === 'searched-show') ? 'searched-hide'
+                                                              :
+                                                             'searched-show';
+     let clickText = 'Show Results'
+     if (searchIdxClass === 'searched-hide') {
+        clickText = 'Hide Results'
+     }
+
+    this.setState({ searchIdxClass: nextClass,
+                    searchIdxText: clickText })
+  }
+
   render() {
     const { searchedById, allSearchedIds, playlist } = this.props;
-    const { playlistIdx, willPlayClass, willPlayText } = this.state;
+    const { playlistIdx, willPlayClass, willPlayText,
+            searchIdxText, searchIdxClass } = this.state;
 
     const currVideoObj = playlist[playlistIdx];
     const currVideoId = (currVideoObj) ? currVideoObj.id : null;
@@ -97,10 +122,17 @@ class PlaylistShow extends Component {
     }
 
     let SearchedIdxDisplay
+    let ShowSearchIdxBtn
     if (allSearchedIds.length > 0) {
       SearchedIdxDisplay = <SearchedIndex searchedById={searchedById}
+                                          searchIdxClass={searchIdxClass}
                                           allSearchedIds={allSearchedIds} />
-    }
+
+      ShowSearchIdxBtn =  <button onClick={ (e) => this.setSearchIdxClass(e) } >
+                            { searchIdxText}
+                          </button>
+  }
+
 
     const LivePlayer = <div className='player'>
                          <Player videoId={currVideoId}
@@ -121,7 +153,7 @@ class PlaylistShow extends Component {
 
           <div className='class-toggle'
                onClick={ (e) => this.toggleWillPlayClass(e) }>
-            <h1 >{ willPlayText }</h1>
+            <h1>{ willPlayText }</h1>
           </div>
         </div>
 
@@ -134,7 +166,10 @@ class PlaylistShow extends Component {
           </ul>
         </div>
 
-        <SearchBar requestVideoSearch={this.props.requestVideoSearch} />
+        <SearchBar requestVideoSearch={this.props.requestVideoSearch}
+                   setSearchIdxClass={this.setSearchIdxClass} />
+
+        { ShowSearchIdxBtn }
 
         { SearchedIdxDisplay }
       </div>

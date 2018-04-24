@@ -11,6 +11,14 @@ class SearchedIndex extends Component {
                    disableSearchRight: false };
   }
 
+
+    componentWillReceiveProps(nextProps) {
+      if (nextProps.searchIdxClass != this.props.searchIdxClass) {
+        console.log('teset');
+      }
+    }
+
+
   setSearchIdx(event, direction) {
     if (event) {
       event.preventDefault();
@@ -40,7 +48,7 @@ class SearchedIndex extends Component {
   }
 
   render() {
-    const { searchedById, allSearchedIds } = this.props;
+    const { searchedById, allSearchedIds, searchIdxClass } = this.props;
     const {startSearchIdx } = this.state;
     const iconId = "v1524351088/add_rm9k9r.png";
 
@@ -55,7 +63,7 @@ class SearchedIndex extends Component {
     ))
 
     return (
-      <div className='searched'>
+      <div className={searchIdxClass}>
         <button onClick={ (e) => this.setSearchIdx(e, 'left') }
                 disabled={this.state.disableSearchLeft}
                 className="nav-left" >
