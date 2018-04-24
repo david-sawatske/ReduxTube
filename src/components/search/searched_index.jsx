@@ -58,17 +58,17 @@ class SearchedIndex extends Component {
       <div className='searched'>
         <button onClick={ (e) => this.setSearchIdx(e, 'left') }
                 disabled={this.state.disableSearchLeft}
-                className="nav-btn" >
-          LEFT
+                className="nav-left" >
+          ◀
         </button>
-        <ul>
+        <ul className='searched-index'>
           { SearchedItems }
         </ul>
 
         <button onClick={ (e) => this.setSearchIdx(e, 'right') }
                 disabled={this.state.disableSearchRight}
-                className="nav-btn" >
-          RIGHT
+                className="nav-right" >
+          ▶
         </button>
       </div>
     );

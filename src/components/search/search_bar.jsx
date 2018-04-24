@@ -4,7 +4,7 @@ class SearchBar extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { term: 'beautiful timelapse'};
+    this.state = { term: 'beautiful timelapse' };
 
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -35,11 +35,12 @@ class SearchBar extends Component {
         <form onSubmit={this.handleSubmit} >
           <input
             type="text"
+            placeholder="Search"
             value={this.state.term}
             onChange={this.update('term')} />
 
           <input type="submit"
-                 value="Search" />
+                 value=" 🔍 " />
         </form>
       </div>
     );
