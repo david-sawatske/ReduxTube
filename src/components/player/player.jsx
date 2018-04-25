@@ -19,6 +19,13 @@ class Player extends React.Component {
     }
   }
 
+  componentDidMount() {
+    let current = window.onYouTubePlayerAPIReady;
+    window.onYouTubePlayerAPIReady = () => {
+      this.initializePlayer();
+    }
+  }
+
   initializePlayer = () => {
     const { videoId } = this.props;
 
