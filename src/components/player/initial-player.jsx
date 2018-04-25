@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import Player from './player';
+
 class InitialPlayer extends Component {
   constructor(props) {
     super(props);
@@ -13,7 +15,6 @@ class InitialPlayer extends Component {
   }
 
   render() {
-
     const videoArray = [
       {
         "id": "2HuJNI_FOMo",
@@ -40,13 +41,32 @@ class InitialPlayer extends Component {
         "thumbnail": "https://i.ytimg.com/vi/8dTzy_N0Pn4/hqdefault.jpg"
       }
     ]
+
     return (
       <div className="initial-player">
-        <h1>Search for videos to build playlist</h1>
+        <div className='player-overlay'>
+          <div className='search-suggestion'>
+            <h1>Search for Videos to Build Playlist</h1>
+            <h2>⤵</h2>
+          </div>
 
-        <button onClick={ (e) => this.playlistPopulator(e, videoArray)}>
-          Populate
-        </button>
+          <h3> -or- </h3>
+
+          <div className='populate-suggestion'>
+            <h1>
+              Click Below for Default Playlist
+            </h1>
+
+            <img alt='play'
+                 onClick={ (e) => this.playlistPopulator(e, videoArray)}
+                 src="http://res.cloudinary.com/sawatskeda10/image/upload/v1524351088/play_c5dbki.png" />
+
+          </div>
+        </div>
+
+        <Player videoId={'XEfDYMngJeE'}
+                currentIndex={null}
+                setVidIdx={null} />
       </div>
     );
   }
