@@ -2,7 +2,7 @@ import React from 'react';
 
 class Player extends React.Component {
   constructor(props) {
-      super(props)
+    super(props)
   }
 
   onPlayerReady = () => {
@@ -16,13 +16,6 @@ class Player extends React.Component {
         this.props.setVidIdx(null, this.props.currentIndex + 1)
         break;
       default:
-    }
-  }
-
-  componentDidMount() {
-    let current = window.onYouTubePlayerAPIReady;
-    window.onYouTubePlayerAPIReady = () => {
-      this.initializePlayer();
     }
   }
 
