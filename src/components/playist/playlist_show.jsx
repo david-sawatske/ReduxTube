@@ -6,13 +6,14 @@ import { requestVideoSearch } from '../../actions/search_actions';
 import SearchedIndex from '../search/searched_index';
 import VideoIndexItem from './video_index_item';
 import SearchBar from '../search/search_bar';
+import InitalPlayer from '../player/initial-player';
 import Player from '../player/player';
 
 class PlaylistShow extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { playlistIdx: 5,
+    this.state = { playlistIdx: 0,
                    searchIdxText: 'Hide Results',
                    searchIdxClass: 'searched-hide',
                    willPlayText: 'View All',
@@ -80,15 +81,17 @@ class PlaylistShow extends Component {
   }
 
   render() {
-    const { searchedById, allSearchedIds, playlist } = this.props;
+    const { searchedById, allSearchedIds, playlist, populatePlaylist } = this.props;
     const { playlistIdx, willPlayClass, willPlayText,
             searchIdxText, searchIdxClass } = this.state;
 
     const currVideoObj = playlist[playlistIdx];
     const currVideoId = (currVideoObj) ? currVideoObj.id : null;
 
-    let WillPlayIndex;
-    let HasPlayedIndex;
+    let WillPlayIndex = <h1>Add to playlist by searching below</h1>;
+    let HasPlayedIndex = <h1>Get watching!!!</h1>
+    let StartPlayer = <InitalPlayer setVidIdx={this.setVidIdx}
+                                    populatePlaylist={populatePlaylist} />
     if (playlist.length > 0) {
       const afterPlaying = playlist.slice(0, playlistIdx);
       const beforePlaying = (willPlayClass === 'will-play') ?
@@ -118,7 +121,8 @@ class PlaylistShow extends Component {
                           setVidIdx={this.setVidIdx}
                           videoIdx={playlist.indexOf(video)} />
         </li>
-      ))
+      )),
+      StartPlayer = null;
     }
 
     let SearchedIdxDisplay
@@ -135,6 +139,8 @@ class PlaylistShow extends Component {
                           </button>
     }
 
+
+
     const LivePlayer = <div className='player'>
                          <Player videoId={currVideoId}
                                  currentIndex={playlistIdx}
@@ -147,7 +153,10 @@ class PlaylistShow extends Component {
           { LivePlayer }
         </div>
 
+        { StartPlayer }
+
         <div className={willPlayClass} >
+          <h2>Coming Up</h2>
           <ul>
             { WillPlayIndex }
           </ul>
@@ -160,7 +169,7 @@ class PlaylistShow extends Component {
 
         <div className='has-played'>
           <div className='has-played-overlay'>
-            <h2>Previously Played</h2>
+            <h2>Recently Played</h2>
           </div>
           <ul>
             { HasPlayedIndex }
