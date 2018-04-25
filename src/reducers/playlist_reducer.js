@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux';
 
-import { VIDEO_REMOVE, VIDEO_ADD  } from '../actions/playlist_actions';
+import { POPULATE_PLAYLIST, VIDEO_REMOVE,
+         VIDEO_ADD  } from '../actions/playlist_actions';
 
 const defState = [
   {
@@ -221,10 +222,12 @@ const defState = [
   }
 ]
 
-const playlist = (state = defState, action) => {
+const playlist = (state = [], action) => {
   Object.freeze(state)
 
   switch (action.type) {
+  case POPULATE_PLAYLIST:
+    return action.videoArray;
   case VIDEO_REMOVE:
     return state.filter( vid => vid != action.video);
   case VIDEO_ADD:
