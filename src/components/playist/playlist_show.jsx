@@ -13,7 +13,7 @@ class PlaylistShow extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { playlistIdx: 0,
+    this.state = { playlistIdx: 7,
                    searchIdxText: 'Hide Results',
                    searchIdxClass: 'searched-hide',
                    willPlayText: 'View All',
@@ -89,9 +89,10 @@ class PlaylistShow extends Component {
     const currVideoId = (currVideoObj) ? currVideoObj.id : null;
 
     let WillPlayIndex = <h1>Add to playlist by searching below</h1>;
-    let HasPlayedIndex = <h1>Get watching!!!</h1>
+    let HasPlayedIndex = <h1>List Empty</h1>
     let StartPlayer = <InitalPlayer setVidIdx={this.setVidIdx}
                                     populatePlaylist={populatePlaylist} />
+    let ClassToggle
     if (playlist.length > 0) {
       const afterPlaying = playlist.slice(0, playlistIdx);
       const beforePlaying = (willPlayClass === 'will-play') ?
@@ -122,6 +123,10 @@ class PlaylistShow extends Component {
                           videoIdx={playlist.indexOf(video)} />
         </li>
       )),
+      ClassToggle = <div className='class-toggle'
+                       onClick={ (e) => this.toggleWillPlayClass(e) }>
+                    <h1>{ willPlayText }</h1>
+      </div>,
       StartPlayer = null;
     }
 
@@ -156,15 +161,12 @@ class PlaylistShow extends Component {
         { StartPlayer }
 
         <div className={willPlayClass} >
-          <h2>Coming Up</h2>
+          <h1>Coming Up</h1>
           <ul>
             { WillPlayIndex }
           </ul>
 
-          <div className='class-toggle'
-               onClick={ (e) => this.toggleWillPlayClass(e) }>
-            <h1>{ willPlayText }</h1>
-          </div>
+          { ClassToggle }
         </div>
 
         <div className='has-played'>
