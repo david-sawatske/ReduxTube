@@ -15,7 +15,7 @@ class VideoIndexItem extends Component {
       PlayNow = <img alt='play'
                      className='play'
                      onClick={ (e) => setVidIdx(e, videoIdx) }
-                     src={ iconURLBase + 'v1524351088/play_c5dbki.png'} />
+                     src={ iconURLBase + 'v1524672709/yt-play_jlajhz.png'} />
     }
 
     return (

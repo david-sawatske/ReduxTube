@@ -59,7 +59,7 @@ class InitialPlayer extends Component {
 
             <img alt='play'
                  onClick={ (e) => this.playlistPopulator(e, videoArray)}
-                 src="http://res.cloudinary.com/sawatskeda10/image/upload/v1524351088/play_c5dbki.png" />
+                 src="http://res.cloudinary.com/sawatskeda10/image/upload/v1524672709/yt-play_jlajhz.png" />
 
           </div>
         </div>
