@@ -10,7 +10,9 @@
 	@media screen and (min-width: 768px) {
 		.app-container {
 			display: grid;
-			grid-template-rows: 10vh 78vh;
+			grid-template-rows: 10vh 85vh;
+
+			height: 95vh;
 
 			overflow: hidden;
 
@@ -18,14 +20,14 @@
 				grid-row: 1;
 
 				img {
-					height: 7.5vh;
+					height: 9.5vh;
 					margin-left: 3vw;
 				}
 			}
 
 	    .playlist-container {
 				grid-row: 2;
-				height: 100vh;
+				height: 85vh;
 
 				background-color: $mid-grey;
 
@@ -52,7 +54,6 @@ h1 {
 
  h2 {
 	 font-family: 'Kalam', sans-serif;
-
 	 font-size: 2vw;
  }
 
