@@ -1,19 +1,17 @@
 import React, { Component } from 'react';
-import { findDOMNode } from 'react-dom';
 
 import { requestVideoSearch } from '../../actions/search_actions';
 
 import SearchedIndex from '../search/searched_index';
 import VideoIndexItem from './video_index_item';
 import SearchBar from '../search/search_bar';
-import InitalPlayer from '../player/initial-player';
 import Player from '../player/player';
 
 class PlaylistShow extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { playlistIdx: 7,
+    this.state = { playlistIdx: 0,
                    searchIdxText: 'Hide Results',
                    searchIdxClass: 'searched-hide',
                    willPlayText: 'View All',
@@ -86,13 +84,12 @@ class PlaylistShow extends Component {
             searchIdxText, searchIdxClass } = this.state;
 
     const currVideoObj = playlist[playlistIdx];
-    const currVideoId = (currVideoObj) ? currVideoObj.id : null;
+    const currVideoId = (currVideoObj) ? currVideoObj.id : 'XEfDYMngJeE';
 
     let WillPlayIndex = <h1>Add to playlist by searching below</h1>;
-    let HasPlayedIndex = <h1>List Empty</h1>
-    let StartPlayer = <InitalPlayer setVidIdx={this.setVidIdx}
-                                    populatePlaylist={populatePlaylist} />
-    let ClassToggle
+    let HasPlayedIndex = <h1>List Empty</h1>;
+
+    let ClassToggle;
     if (playlist.length > 0) {
       const afterPlaying = playlist.slice(0, playlistIdx);
       const beforePlaying = (willPlayClass === 'will-play') ?
@@ -126,8 +123,7 @@ class PlaylistShow extends Component {
       ClassToggle = <div className='class-toggle'
                        onClick={ (e) => this.toggleWillPlayClass(e) }>
                     <h1>{ willPlayText }</h1>
-      </div>,
-      StartPlayer = null;
+      </div>
     }
 
     let SearchedIdxDisplay
@@ -144,21 +140,15 @@ class PlaylistShow extends Component {
                           </button>
     }
 
-
-
     const LivePlayer = <div className='player'>
                          <Player videoId={currVideoId}
                                  currentIndex={playlistIdx}
-                                 setVidIdx={this.setVidIdx} />
-                       </div>
-
+                                 setVidIdx={this.setVidIdx}
+                                 populatePlaylist={populatePlaylist} />
+                       </div>;
     return (
       <div className='playlist-container'>
-        <div className='player'>
-          { LivePlayer }
-        </div>
-
-        { StartPlayer }
+        { LivePlayer }
 
         <div className={willPlayClass} >
           <h1>Coming Up</h1>
