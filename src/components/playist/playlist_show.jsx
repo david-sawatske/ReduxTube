@@ -133,10 +133,10 @@ class PlaylistShow extends Component {
     let SearchedIdxDisplay
     let ShowSearchIdxBtn
     if (allSearchedIds.length > 0) {
-      SearchedIdxDisplay = <SearchedIndex searchedById={searchedById}
-                                          buttonFn={this.addVid}
-                                          searchIdxClass={searchIdxClass}
-                                          allSearchedIds={allSearchedIds} />
+      SearchedIdxDisplay = <SearchedIndex searchIdxClass={searchIdxClass}
+                                          allSearchedIds={allSearchedIds}
+                                          searchedById={searchedById}
+                                          buttonFn={this.addVid} />
 
       ShowSearchIdxBtn =  <button className='search-idx-btn'
                                   onClick={ (e) => this.setSearchIdxClass(e) } >
@@ -146,11 +146,11 @@ class PlaylistShow extends Component {
 
     const isWelcome = ( currVideoObj ) ? false : true;
     const LivePlayer = <div className='player'>
-                         <Player videoId={currVideoId}
-                                 isWelcome={isWelcome}
+                         <Player populatePlaylist={populatePlaylist}
                                  currentIndex={playlistIdx}
                                  setVidIdx={this.setVidIdx}
-                                 populatePlaylist={populatePlaylist} />
+                                 isWelcome={isWelcome}
+                                 videoId={currVideoId} />
                        </div>;
     return (
       <div className='playlist-container'>
@@ -174,8 +174,8 @@ class PlaylistShow extends Component {
           </ul>
         </div>
 
-        <SearchBar requestVideoSearch={this.props.requestVideoSearch}
-                   setSearchIdxClass={this.setSearchIdxClass} />
+        <SearchBar setSearchIdxClass={this.setSearchIdxClass}
+                   requestVideoSearch={this.props.requestVideoSearch} />
 
         { ShowSearchIdxBtn }
 

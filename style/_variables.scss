@@ -7,8 +7,12 @@ $mid-grey: #3F4045;
 $green-grey: #485665;
 $white: rgba(#ffffff, 0.9);
 
-$transparent: rgba(#ffffff, 0);
 $youtube-black-t: rgba(#282828, 0.9);
+$redux-purple-t: rgba(#6031ad, 0.5);
+$purple-gray-t: rgba(#413f54, 0.25);
+$transparent: rgba(#ffffff, 0);
+$white-t: rgba(#ffffff, 0.5);
+
 
 $purple-black-gradient: to bottom right, $purple-gray 10%, $youtube-black;
 $recent-bg: linear-gradient($purple-black-gradient);
