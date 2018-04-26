@@ -108,7 +108,7 @@ class Player extends React.Component {
                     <h2>⤵</h2>
                   </div>
 
-                  <h3> -or- </h3>
+                  <h3> ~ or ~ </h3>
 
                   <div className='populate-suggestion'>
                     <h1>
@@ -116,6 +116,7 @@ class Player extends React.Component {
                     </h1>
 
                     <img alt='play'
+                         className='play'
                          onClick={ (e) => this.playlistPopulator(e, videoArray)}
                          src="http://res.cloudinary.com/sawatskeda10/image/upload/v1524672709/yt-play_jlajhz.png" />
 
