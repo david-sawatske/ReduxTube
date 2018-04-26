@@ -121,9 +121,13 @@ class PlaylistShow extends Component {
         </li>
       )),
       ClassToggle = <div className='class-toggle'
-                       onClick={ (e) => this.toggleWillPlayClass(e) }>
-                    <h1>{ willPlayText }</h1>
-      </div>
+                         onClick={ (e) => this.toggleWillPlayClass(e) }>
+                      <h1>{ willPlayText }</h1>
+                    </div>
+    }
+
+    if (( playlist.length - 1 ) === playlistIdx) {
+      ClassToggle = null;
     }
 
     let SearchedIdxDisplay
