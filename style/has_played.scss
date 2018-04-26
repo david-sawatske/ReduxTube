@@ -84,7 +84,6 @@
 				.play, .add-remove {
 					width: 5vw;
 
-					justify-self: center;
 					align-self: top;
 					opacity: 0;
 				}
@@ -94,7 +93,6 @@
 					grid-row: 2;
 
 					justify-self: right;
-
 				}
 
 				.add-remove {
@@ -109,7 +107,6 @@
 				.play, .add-remove {
 					width: 5vw;
 					opacity: .33;
-					background-color: $white;
 				}
 
 				.play:hover, .add-remove:hover {

@@ -1,0 +1,276 @@
+@supports (grid-area: auto) {
+	@media screen and (min-width: 768px) {
+		.will-play {
+			grid-column: 3/6;
+			grid-row: 1/3;
+			z-index: 1;
+
+			overflow: hidden;
+
+			width: 20vw;
+			justify-self: right;
+
+			background: $upcoming-hover-bg-wk;
+			background: $upcoming-hover-bg;
+
+			h1 {
+				text-align: center;
+
+				font-size: 2vw;
+				font-size: italic;
+			}
+
+			h2 {
+				padding: 0;
+				margin: 0;
+				text-align: center;
+
+				font-size: 2vw;
+				font-style: italic;
+			}
+
+			ul {
+				width: 100vw;
+				margin-left: -4vw;
+			}
+
+			li {
+				position: relative;
+				float: left;
+				display: block;
+
+				width: 5vw;
+				border-left: 2px solid $white;
+				height: 360px;
+
+				.video-idx-item .play, .add-remove {
+					height: 0;
+				}
+
+				.video-title {
+					font-size: 0px;
+				}
+			}
+
+			ul:hover li {
+				height: 360px;
+				width: 5vw;
+			}
+
+			ul li:hover {
+				width: 30vw;
+				transition-delay: .1s;
+			}
+
+			li img {
+				display: block;
+			}
+
+			ul li .video-idx-item {
+				.play, .add-remove {
+					opacity: 0;
+				}
+			}
+
+			.class-toggle {
+				h1 {
+					font-size: 0;
+				}
+			}
+		}
+
+		.will-play:hover {
+			width: 70vw;
+			z-index: 2;
+
+			background: $upcoming-hover-bg-wk;
+			background: $upcoming-hover-bg;
+
+			.class-toggle {
+				height: 360px;
+				width: 3vw;
+				margin-left: 65.5vw;
+				position: fixed;
+				z-index: 3;
+
+				background-color: $mid-grey;
+
+				h1 {
+					transform: rotate(90deg);
+					white-space: nowrap;
+					padding: 0vw 0 0 5vh;
+
+					color: $white;
+					font-size: 2.5vw;
+					opacity: .75;
+				}
+			}
+
+			.class-toggle:hover {
+				background-color: $green-grey;
+
+				h1 {
+					opacity: 1;
+				}
+			}
+			
+			ul li .video-idx-item:hover {
+				display: grid;
+
+				width: 45vw;
+				height: calc(45vw * (9/16));
+
+				grid-template-columns: 30vw 15vw;
+				grid-template-rows: 20vh 15vh 25vh;
+
+				.thumbnail {
+					grid-column: 1/3;
+					grid-row: 1/3;
+				}
+
+				.video-title {
+					grid-column: 1/3;
+					grid-row: 1;
+					z-index: 2;
+
+					margin-left: 1vw;
+
+					white-space: nowrap;
+					width: 28vw;
+					overflow: hidden;
+
+					font-size: 1.5vw;
+					color: $white;
+				}
+
+				.play, .add-remove {
+					grid-column: 1;
+					z-index: 2;
+
+					height: auto;
+					justify-self: center;
+
+					opacity: .5;
+				}
+
+				.play:hover, .add-remove:hover {
+					opacity: 1;
+				}
+
+				.play {
+					grid-row: 2;
+					width: 7vw;
+				}
+
+				.add-remove {
+					grid-row: 3;
+					width: 3vw;
+				}
+			}
+		}
+
+		.will-play-all {
+			grid-column: 4/6;
+			grid-row: 1/3;
+			z-index: 3;
+
+			height: 75vh;
+			width: 50vw;
+
+			overflow-y: scroll;
+
+			background: $upcoming-hover-bg-wk;
+			background: $upcoming-hover-bg;
+
+			display: grid;
+			grid-template-rows: 7.5vh auto;
+
+			.will-play-heading {
+				grid-row: 1;
+				text-align: center;
+			}
+
+			.class-toggle {
+				grid-row: 1/3;
+				cursor: pointer;
+
+				h1 {
+					position: -webkit-sticky;
+					position: sticky;
+					top: 0;
+
+					font-size: 3.5vh;
+					color: $white;
+				}
+
+				h1:hover {
+					font-size: 4vh;
+					text-shadow: 2px 2px 2px $youtube-red;
+				}
+			}
+
+			.video-idx-item {
+				width: 40vw;
+
+				display: grid;
+				grid-template-columns: 20vw 20vw;
+				grid-template-rows: 10vw auto;
+
+				border: 1px solid $purple-gray;
+				margin-bottom: 1vh;
+
+				.thumbnail {
+					grid-column: 1/3;
+					grid-row: 1/3;
+
+					width: 40vw;
+					min-height: calc(40vw * (9/16));
+				}
+
+				.video-title {
+					grid-column: 1/3;
+					grid-row: 1;
+					z-index: 3;
+
+					margin-left: 1vw;
+
+					font-size: 1.25vw;
+					font-weight: lighter;
+					color: $white;
+				}
+
+				.play, .add-remove {
+					width: 8vw;
+
+					justify-self: center;
+
+					opacity: 0;
+				}
+
+				.play {
+					grid-column: 1;
+					grid-row: 2;
+
+					margin-left: 6vw;
+				}
+
+				.add-remove {
+					grid-column: 2;
+					grid-row: 2;
+
+					margin-right: 6vw;
+				}
+			}
+
+			.video-idx-item:hover {
+				.play, .add-remove {
+					opacity: 1;
+				}
+			}
+
+			h2 {
+				font-size: 0;
+			}
+		}
+  }
+}

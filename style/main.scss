@@ -1,4 +1,6 @@
 @import '_variables';
+@import 'has_played';
+@import 'will_play';
 
 // Keep video 16:9 aspect ratio by setting row height to 9/16s it's width
 // ex 75vw * 9/16 ~ 42vw
@@ -6,7 +8,7 @@
 	@media screen and (min-width: 768px) {
 		.app-container {
 			display: grid;
-			grid-template-rows: 10vh 85vh;
+			grid-template-rows: 10vh 78vh;
 
 			overflow: hidden;
 
@@ -24,482 +26,101 @@
 
 				overflow: hidden;
 
+				background-color: $mid-grey;
+
 	      display: grid;
 	      grid-template-columns: 5vw 25vw 20vw 30vw 20vw;
 	      grid-template-rows: 27vw 15vw 7.5vh;
-
-				.will-play, .has-played {
-					min-height: 42vw;
-					overflow: hidden;
-					z-index: 1;
-				}
-
-	      .will-play {
-					grid-column: 3/6;
-				 	grid-row: 1/3;
-					z-index: 1;
-
-					width: 20vw;
-					justify-self: right;
-
-					background-color: rgba(0, 0, 0, 0.5);
-
-					h2 {
-						padding: 0;
-						margin: 0;
-						text-align: center;
-
-						font-size: 2vw;
-						color: white;
-					}
-
-					ul {
-						width: 100vw;
-						margin-left: -4vw;
-					}
-
-					li {
-						position: relative;
-						display: block;
-						width: 5vw;
-						float: left;
-						border-left: 2px solid rgba(255, 255, 255, 0.55);
-
-						.video-idx-item .play, .add-remove {
-							height: 0;
-						}
-
-						.video-title {
-							font-size: 0px;
-						}
-					}
-
-					ul:hover li {
-						height: 360px;
-						width: 5vw;
-					}
-
-					ul li:hover {
-						width: 30vw;
-						transition-delay: .1s;
-
-						.video-idx-item {
-							.play, .add-remove {
-								height: 5vh;
-								transition-delay: .1s;
-							}
-						}
-					}
-
-					li img {
-						display: block;
-					}
-
-					.class-toggle {
-						h1 {
-							font-size: 0;
-						}
-					}
-	      }
-
-				.will-play:hover {
-					width: 70vw;
-					z-index: 2;
-
-					background-color: black;
-
-					.class-toggle {
-						height: 360px;
-						width: 5vw;
-						margin-left: 65vw;
-					  position: fixed;
-
-						background-color: rgba(#000000, 0.75);
-
-						h1 {
-							transform: rotate(90deg);
-							white-space: nowrap;
-							padding: 1vw 0 0 5vh;
-							color: white;
-							font-size: 2.5vw;
-						}
-					}
-
-					ul li .video-idx-item:hover {
-						display: grid;
-
-						width: 45vw;
-						height: calc(45vw * (9/16));
-
-						grid-template-columns: 30vw 15vw;
-						grid-template-rows: 15vh 15vh 30vh;
-
-						.thumbnail {
-							grid-column: 1/3;
-							grid-row: 1/3;
-						}
-
-						.title-container {
-							grid-column: 1/3;
-							grid-row: 1;
-							z-index: 2;
-
-							height: 7.5vh;
-							max-width: 30vw;
-							margin-top: 2vh;
-							overflow: hidden;
-
-							background-color: rgba(60, 60, 60, 0.5);
-
-							.video-title {
-								padding-top: 1vh;
-								padding-left: 1.5vw;
-								white-space: nowrap;
-
-								font-size: 1.5vw;
-								color: white;
-							}
-						}
-
-						.play, .add-remove {
-							grid-column: 1;
-							z-index: 2;
-
-							width: 5vw;
-							height: 5vw;
-							justify-self: center;
-							padding: 1vh;
-							border-radius: 50%;
-
-							background-color: white;
-							opacity: .5;
-						}
-
-						.play:hover, .add-remove:hover {
-							opacity: 1;
-						}
-
-						.play {
-							grid-row: 2;
-						}
-
-						.add-remove {
-							grid-row: 3;
-						}
-					}
-				}
-
-				.will-play-all {
-					grid-column: 4/6;
-					grid-row: 1/3;
-					z-index: 2;
-
-					height: 75vh;
-					width: 50vw;
-
-					overflow-y: scroll;
-
-					background-color:  rgba(60, 60, 60, 0.8);
-
-					display: grid;
-					grid-template-rows: 3vh;
-
-					.class-toggle {
-						grid-row: 1;
-						cursor: pointer;
-
-						position: static;
-
-						h1 {
-							text-align: right;
-							padding-right: 4vw;
-
-							font-size: 3.5vh;
-							color: rgba(255, 255, 255, 0.75);
-						}
-
-						h1:hover {
-							font-size: 3.5vh;
-							color: white;
-							text-shadow: 2px 2px 2px red;
-						}
-					}
-
-					.video-idx-item {
-						margin-top: 3vh;
-
-						display: grid;
-						grid-template-columns: 20vw 20vw;
-						grid-template-rows: 10vw auto;
-
-						.thumbnail {
-							grid-column: 1/3;
-							grid-row: 1/3;
-
-							width: 40vw;
-							min-height: calc(40vw * (9/16));
-						}
-
-
-						.title-container {
-							grid-column: 1/3;
-							grid-row: 1;
-							z-index: 2;
-
-							height: 7.5vh;
-							background-color: rgba(60, 60, 60, 0.5);
-							margin-top: 2vh;
-
-							.video-title {
-								font-size: 1.5vw;
-								font-weight: lighter;
-								color: white;
-
-								padding-top: 1vh;
-								padding-left: 1.5vw;
-								margin: auto;
-							}
-						}
-
-						.play, .add-remove {
-							width: 8vw;
-
-							justify-self: center;
-
-							opacity: 0;
-						}
-
-						.play {
-							grid-column: 1;
-							grid-row: 2;
-
-							margin-left: 6vw;
-						}
-
-						.add-remove {
-							grid-column: 2;
-							grid-row: 2;
-
-							margin-right: 6vw;
-						}
-					}
-
-					.video-idx-item:hover {
-						.play, .add-remove {
-							opacity: 1;
-
-							padding: 1vh;
-
-							background-color: rgba(#ffffff, 0.75);
-							border-radius: 50%;
-						}
-					}
-
-					h2 {
-						font-size: 0;
-					}
-				}
-
-				.has-played, .has-played-overlay {
-					background: $recent-bg-wk;
-				  background: $recent-bg;
-				}
-
-	      .has-played {
-					grid-column: 1/3;
-				 	grid-row: 1/3;
-
-					width: 5vw;
-
-					.has-played-overlay {
-						width: 5vw;
-						height: 40vw;
-
-						h2 {
-							transform: rotate(270deg);
-							white-space: nowrap;
-							padding: 25vh 1vh;
-
-							color: $white;
-							font-size: 2vw;
-							font-style: italic;
-						}
-					}
-
-					ul li	.video-idx-item {
-						height: 0;
-						overflow: hidden;
-					}
-	      }
-
-				.has-played:hover {
-					overflow-y: scroll;
-					width: 30vw;
-					opacity: 1;
-
-					.has-played-overlay {
-						height:0;
-						width: 0;
-
-						h2 {
-							font-size: 0;
-						}
-					}
-
-					ul li	.video-idx-item {
-						margin: 3vh 0 0 -1.75vw;
-
-						display: grid;
-						grid-template-columns: 11vw 11vw;
-						grid-template-rows: 7.5vw auto;
-						grid-column-gap: 2vw;
-
-						height: auto;
-
-						.thumbnail {
-							grid-column: 1/3;
-							grid-row: 1/3;
-
-							width: 25vw;
-							min-height: calc(25vw * (9/16));
-						}
-
-						.video-title {
-							grid-column: 1/3;
-							grid-row: 1;
-							z-index: 2;
-
-							width: 25vw;
-
-							color: white;
-							font-size: 1.25vw;
-							text-align: center;
-						}
-
-						.play, .add-remove {
-							width: 5vw;
-
-							justify-self: center;
-							align-self: top;
-							opacity: 0;
-						}
-
-						.play {
-							grid-column: 1;
-							grid-row: 2;
-
-							justify-self: right;
-
-						}
-
-						.add-remove {
-							grid-column: 2;
-							grid-row: 2;
-
-							justify-self: left;
-
-						}
-					}
-
-					ul li	.video-idx-item:hover {
-						.play, .add-remove {
-							width: 5vw;
-							opacity: .33;
-							background-color: $white;
-						}
-
-						.play:hover, .add-remove:hover {
-							opacity: 1;
-						}
-					}
-	      }
 
 				.player {
 					grid-column: 2/5;
 					grid-row: 1/3;
 					z-index: 1;
 
-					#video-player {
-						width: 75vw;
-						min-height: calc(75vw * (9/16));
-					}
-
-				}
-
-				.initial-player {
-					grid-column: 2/5;
-					grid-row: 1/3;
-					z-index: 2;
-
-					width: 75vw;
-					min-height: calc(75vw * (9/16));
-
-					.player-overlay {
-						width: 60vw;
-						height: calc(40vw * (9/16));
-						margin-top: 10vw;
-						margin-left: 10vw;
-
-						background-color: rgba(0, 0, 0, 0.75);
-
+					.video-container {
 						display: grid;
-						grid-template-columns: 25vw 10vw 25vw;
-						grid-template-rows: auto;
+						grid-template-columns: 75vw;
+						grid-template-rows: calc(75vw * (9/16));
 
-						.search-suggestion, .populate-suggestion {
-							display: grid;
-							grid-template-columns: auto;
-							grid-template-rows: 10vw 10vw;
-
-							h1, h3 {
-								text-align: center;
-
-								color: white;
-							}
-						}
-
-						.search-suggestion {
+						#video-player {
 							grid-column: 1;
 							grid-row: 1;
 
-							h1 {
+							width: 75vw;
+							min-height: calc(75vw * (9/16));
+						}
+
+						.player-overlay {
+							grid-column: 1;
+							grid-row: 1;
+							z-index: 2;
+
+							width: 60vw;
+							height: calc(40vw * (9/16));
+							margin-top: 10vw;
+							margin-left: 10vw;
+
+							background-color: rgba(0, 0, 0, 0.75);
+
+							display: grid;
+							grid-template-columns: 25vw 10vw 25vw;
+							grid-template-rows: auto;
+
+							.search-suggestion, .populate-suggestion {
+								display: grid;
+								grid-template-columns: auto;
+								grid-template-rows: 10vw 10vw;
+
+								h1, h3 {
+									text-align: center;
+
+									color: white;
+								}
+							}
+
+							.search-suggestion {
+								grid-column: 1;
 								grid-row: 1;
+
+								h1 {
+									grid-row: 1;
+								}
+
+								h2 {
+									grid-row: 2;
+
+									justify-self:center;
+									align-self: center;
+
+									font-size: 7.5vw;
+									color: $redux-purple;
+								}
 							}
 
-							h2 {
-								grid-row: 2;
+							.search-suggestion:hover {
+								h2 {
+									transform: rotate(55deg);
+								}
+							}
 
-								justify-self:center;
+							h3 {
+								grid-column: 2;
+
+								text-align: center;
 								align-self: center;
+								font-style: italic;
 
-								font-size: 7.5vw;
-								color: $redux-purple;
+								font-size: 2.5vw;
 							}
-						}
 
-						.search-suggestion:hover {
-							h2 {
-								transform: rotate(55deg);
-							}
-						}
+							.populate-suggestion {
+								grid-column: 3;
 
-						h3 {
-							grid-column: 2;
-
-							text-align: center;
-							align-self: center;
-							font-style: italic;
-
-							font-size: 2.5vw;
-						}
-
-						.populate-suggestion {
-							grid-column: 3;
-
-							img {
-								width: 8vw;
-								justify-self: center;
-								align-self: center;
+								img {
+									width: 8vw;
+									justify-self: center;
+									align-self: center;
+								}
 							}
 						}
 					}
@@ -669,6 +290,8 @@
 h1, h2, h3 {
 	font-family: 'Roboto', sans-serif;
 	font-weight: lighter;
+	color: $white;
+	font-style: italic;
 }
 
 ul {
@@ -683,6 +306,7 @@ ul {
 
 .play, .add-remove {
 	padding: .5vw;
+	background-color: $white;
 }
 
 .play {

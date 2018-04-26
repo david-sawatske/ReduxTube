@@ -2,13 +2,24 @@ $redux-purple: #6131AE;
 $youtube-red: #ff0000;
 $youtube-black: #282828;
 
-$youtube-black-t: rgba(#282828, 0.5);
-
 $purple-gray: #413F54;
 $mid-grey: #3F4045;
 $green-grey: #485665;
 $white: rgba(#ffffff, 0.9);
 
+$transparent: rgba(#ffffff, 0);
+$youtube-black-t: rgba(#282828, 0.5);
+
 $purple-black-gradient: to bottom right, $purple-gray 10%, $youtube-black;
 $recent-bg: linear-gradient($purple-black-gradient);
 $recent-bg-wk: linear-gradient($purple-black-gradient);
+
+
+$green-black-gradient: to top right, $green-grey 10%, $youtube-black;
+$upcoming-bg: linear-gradient($green-black-gradient);
+$upcoming-bg-wk: linear-gradient($green-black-gradient);
+
+
+$white-black-gradient: 90deg, $transparent, $mid-grey, $youtube-black,;
+$upcoming-hover-bg: linear-gradient($white-black-gradient);
+$upcoming-hover-bg-wk: linear-gradient($white-black-gradient);

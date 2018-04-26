@@ -157,7 +157,7 @@ class PlaylistShow extends Component {
         { LivePlayer }
 
         <div className={willPlayClass} >
-          <h1>Coming Up</h1>
+          <h1 className='will-play-heading'>Coming Up</h1>
           <ul>
             { WillPlayIndex }
           </ul>
