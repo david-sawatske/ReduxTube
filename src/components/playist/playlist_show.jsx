@@ -144,8 +144,10 @@ class PlaylistShow extends Component {
                           </button>
     }
 
+    const isWelcome = ( currVideoObj ) ? false : true;
     const LivePlayer = <div className='player'>
                          <Player videoId={currVideoId}
+                                 isWelcome={isWelcome}
                                  currentIndex={playlistIdx}
                                  setVidIdx={this.setVidIdx}
                                  populatePlaylist={populatePlaylist} />

@@ -56,6 +56,10 @@ class Player extends React.Component {
         this.player.loadVideoById(this.props.videoId);
       }
     }
+
+    if (prevProps.isWelcome !== this.props.isWelcome) {
+      this.setState({ isWelcome: this.props.isWelcome })
+    }
   }
 
   playlistPopulator(event, videoArray) {
