@@ -34,6 +34,10 @@
 				height: 0;
 				overflow: hidden;
 			}
+
+			ul h1 {
+				font-size: 0;
+			}
 	  }
 
 		.has-played:hover {
@@ -112,6 +116,11 @@
 				.play:hover, .add-remove:hover {
 					opacity: 1;
 				}
+			}
+
+			ul h4 {
+				color: red;
+				font-size: 2vw;
 			}
 	  }
   }

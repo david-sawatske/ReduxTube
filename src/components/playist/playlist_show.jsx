@@ -86,8 +86,8 @@ class PlaylistShow extends Component {
     const currVideoObj = playlist[playlistIdx];
     const currVideoId = (currVideoObj) ? currVideoObj.id : 'XEfDYMngJeE';
 
-    let WillPlayIndex = <h1>Add to playlist by searching below</h1>;
-    let HasPlayedIndex = <h1>List Empty</h1>;
+    let WillPlayIndex = <h3>Add to playlist by searching below</h3>;
+    let HasPlayedIndex = <h3>List Empty</h3>;
 
     let ClassToggle;
     if (playlist.length > 0) {
@@ -157,7 +157,7 @@ class PlaylistShow extends Component {
         { LivePlayer }
 
         <div className={willPlayClass} >
-          <h1 className='will-play-heading'>Coming Up</h1>
+          <h2 className='will-play-heading'>Coming Up</h2>
           <ul>
             { WillPlayIndex }
           </ul>
