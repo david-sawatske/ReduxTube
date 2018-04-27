@@ -1,7 +1,8 @@
 import { combineReducers } from 'redux';
 
 import { VIDEO_REMOVE, VIDEO_ADD  } from '../actions/playlist_actions';
-import { RECEIVE_VIDEO_SEARCH } from '../actions/search_actions';
+import { CLEAR_VIDEO_SEARCH,
+         RECEIVE_VIDEO_SEARCH } from '../actions/search_actions';
 
 import { merge, union, omit } from 'lodash';
 
@@ -12,11 +13,13 @@ const searchedById = (state = {}, action) => {
   case RECEIVE_VIDEO_SEARCH:
     return merge({}, getSearchData(action.searchResults.items).byId, state)
   case VIDEO_ADD:
-    return omit(state, action.video.id)
+    return omit(state, action.video.id);
   case VIDEO_REMOVE:
     const videoObj = { [action.video.id]: action.video }
 
-    return merge({}, videoObj, state)
+    return merge({}, videoObj, state);
+  case CLEAR_VIDEO_SEARCH:
+    return {};
   default:
     return state;
   }
@@ -31,7 +34,9 @@ const allSearchedIds = (state = [], action) => {
   case VIDEO_ADD:
     return state.filter( videoId => videoId != action.video.id);
   case VIDEO_REMOVE:
-    return union([], state, [action.video.id])
+    return union([], state, [action.video.id]);
+  case CLEAR_VIDEO_SEARCH:
+    return [];
   default:
     return state;
   }
