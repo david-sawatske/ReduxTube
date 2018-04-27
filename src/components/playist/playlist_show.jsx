@@ -99,8 +99,8 @@ class PlaylistShow extends Component {
     const currVideoObj = playlist[playlistIdx];
     const currVideoId = (currVideoObj) ? currVideoObj.id : 'XEfDYMngJeE';
 
-    let WillPlayIndex = <h3>Add to playlist by searching below</h3>;
-    let HasPlayedIndex = <h3>List Empty</h3>;
+    let WillPlayIndex = <h4>Add to playlist by searching below</h4>;
+    let HasPlayedIndex = <h4>List Empty</h4>;
 
     let PlaylistReset;
     let WillPlayClassToggle;

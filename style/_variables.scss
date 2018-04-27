@@ -8,22 +8,34 @@ $green-grey: #485665;
 $white: rgba(#ffffff, 0.9);
 
 $youtube-black-t: rgba(#282828, 0.9);
+$youtube-red-t: rgba(#ff0000, 0.25);
 $redux-purple-t: rgba(#6031ad, 0.5);
 $purple-gray-t: rgba(#413f54, 0.25);
+
 $transparent: rgba(#ffffff, 0);
 $white-t: rgba(#ffffff, 0.5);
+$redux-purple-t-bg: rgba(#6031ad, 0.1);
+$youtube-red-t-bg: rgba(#ff0000, 0.1);
+$youtube-black-t-bg: rgba(#282828, 0.1);
 
+$transparent-bg-gradient: to right, $white-t, $redux-purple-t-bg,
+                                    $youtube-red-t-bg, $youtube-black-t-bg;
+$app-bg: linear-gradient($transparent-bg-gradient);
+$app-bg-wk: -webkit-linear-gradient($transparent-bg-gradient);
 
-$purple-black-gradient: to bottom right, $purple-gray 10%, $youtube-black;
+$purple-black-gradient: to bottom left, $purple-gray 10%, $youtube-black;
 $recent-bg: linear-gradient($purple-black-gradient);
-$recent-bg-wk: linear-gradient($purple-black-gradient);
-
+$recent-bg-wk: -webkit-linear-gradient($purple-black-gradient);
 
 $green-black-gradient: to top right, $green-grey 10%, $youtube-black;
 $upcoming-bg: linear-gradient($green-black-gradient);
-$upcoming-bg-wk: linear-gradient($green-black-gradient);
-
+$upcoming-bg-wk: -webkit-linear-gradient($green-black-gradient);
 
 $white-black-gradient: 90deg, $transparent, $mid-grey, $youtube-black,;
 $upcoming-hover-bg: linear-gradient($white-black-gradient);
-$upcoming-hover-bg-wk: linear-gradient($white-black-gradient);
+$upcoming-hover-bg-wk: -webkit-linear-gradient($white-black-gradient);
+
+$search-bg-gradient: to right, $youtube-black-t-bg, $redux-purple-t-bg,
+                               $youtube-red-t-bg, $youtube-black-t-bg;
+$search-bg: linear-gradient($search-bg-gradient);
+$search-bg-wk: -webkit-linear-gradient($search-bg-gradient);

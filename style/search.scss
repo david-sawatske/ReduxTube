@@ -5,9 +5,11 @@
 			grid-column: 1/6;
 			z-index: 2;
 
-			height: 7.5vh;
+			height: 5vw;
+			width: 98.5vw;
 
-			background-color: $green-grey;
+			background: $search-bg-wk;
+			background: $search-bg;
 
 			form {
 				margin-left: 6vw;

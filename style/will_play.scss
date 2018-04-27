@@ -7,7 +7,7 @@
 
 			overflow: hidden;
 
-			width: 20vw;
+			width: 18.5vw;
 			justify-self: right;
 
 			background: $upcoming-hover-bg-wk;
@@ -47,7 +47,7 @@
 				}
 
 				.video-title {
-					font-size: 0px;
+					font-size: 0;
 				}
 			}
 
@@ -71,7 +71,7 @@
 				}
 			}
 
-			ul h3 {
+			ul h4 {
 				margin: 5vh 21vw;
 				width: 31vw;
 
@@ -95,8 +95,8 @@
 
 			.class-toggle {
 				height: 360px;
-				width: 3vw;
-				margin-left: 65.5vw;
+				width: 4vw;
+				margin-left: 66vw;
 				position: fixed;
 				z-index: 3;
 

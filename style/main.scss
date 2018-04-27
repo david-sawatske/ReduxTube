@@ -10,30 +10,35 @@
 	@media screen and (min-width: 768px) {
 		.app-container {
 			display: grid;
-			grid-template-rows: 10vh 85vh;
+			grid-template-rows: 6vw 50vw;
 
-			height: 95vh;
+			width: 100vw;
+			height: 56vw;
 
-			overflow: hidden;
+			background: $app-bg-wk;
+		  background: $app-bg;
+			background-size: 100vw 56vw;
 
 			.header {
 				grid-row: 1;
 
 				img {
-					height: 9.5vh;
+					height: 5vw;
 					margin-left: 3vw;
+
+					background-color: $transparent;
 				}
 			}
 
 	    .playlist-container {
 				grid-row: 2;
-				height: 85vh;
-
-				background-color: $mid-grey;
+				height: 42.5vw;
+				width: 98vw;
+				background-color: $green-grey;
 
 	      display: grid;
-	      grid-template-columns: 5vw 25vw 20vw 30vw 20vw;
-	      grid-template-rows: 20vw 22vw 7.5vh;
+	      grid-template-columns: 5vw 23.5vw 20vw 30vw 20vw;
+	      grid-template-rows: 27vw 15.5vw 5vw;
 	    }
 		}
   }
@@ -41,7 +46,7 @@
 
 // DEFAULT BASE STYLES //
 
-h1, h2, h3 {
+h1, h2, h3, h4 {
 	font-family: 'Roboto', sans-serif;
 	font-weight: lighter;
 	font-style: italic;
