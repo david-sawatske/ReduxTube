@@ -21,9 +21,32 @@
 
 			.header {
 				grid-row: 1;
+				height: 6vw;
 
-				img {
+				display: grid;
+				grid-template-columns: 75vw 25vw;
+
+				.logo {
+					grid-column: 1;
+
 					height: 5vw;
+					margin-left: 3vw;
+
+					background-color: $transparent;
+				}
+
+				.contact {
+					grid-column: 2;
+					align-self: center;
+					justify-self: center;
+
+					img {
+						height: 3.5vw;
+						margin-left: 2vw;
+
+						cursor: pointer;
+					}
+
 					margin-left: 3vw;
 
 					background-color: $transparent;

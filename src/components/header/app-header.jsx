@@ -1,12 +1,27 @@
 import React from 'react';
 
-const Header = () => (
-  <div className='header'>
+const Header = () => {
+  const urlBase = 'http://res.cloudinary.com/sawatskeda10/image/upload/';
+  return (
+    <div className='header'>
+      <img src={urlBase + 'v1524855456/reduxTube_t6qira.png'}
+           className='logo'
+           alt='logo'/>
 
-    <img src={'http://res.cloudinary.com/sawatskeda10/image/upload/v1524488678/reduxTube_tdm9bx.png'}
-                   className='play'
-                   alt='play'/>
-  </div>
-);
+      <div className='contact'>
+        <a href="https://github.com/david-sawatske/ReduxTube/">
+          <img src={urlBase + 'v1523645571/github_gepeui.png'}
+               className='github'
+               alt='github'/>
+        </a>
+        <a href="http://www.sawatske.com">
+          <img src={urlBase + 'v1524860068/personal-page_qrmtcq.png'}
+               className='personal-page'
+               alt='personal page'/>
+        </a>
+      </div>
+    </div>
+  )
+};
 
 export default Header;
