@@ -33,6 +33,11 @@ class PlaylistShow extends Component {
     this.props.removeVideo(video);
   }
 
+  clearPlaylist(event) {
+    event.preventDefault();
+    this.props.populatePlaylist([]);
+  }
+
   setVidIdx(event, newVidIdx) {
     if (event) {
       event.preventDefault();
@@ -86,10 +91,12 @@ class PlaylistShow extends Component {
     const currVideoObj = playlist[playlistIdx];
     const currVideoId = (currVideoObj) ? currVideoObj.id : 'XEfDYMngJeE';
 
+
     let WillPlayIndex = <h3>Add to playlist by searching below</h3>;
     let HasPlayedIndex = <h3>List Empty</h3>;
 
-    let ClassToggle;
+    let PlaylistReset;
+    let WillPlayClassToggle;
     if (playlist.length > 0) {
       const afterPlaying = playlist.slice(0, playlistIdx);
       const beforePlaying = (willPlayClass === 'will-play') ?
@@ -120,14 +127,18 @@ class PlaylistShow extends Component {
                           videoIdx={playlist.indexOf(video)} />
         </li>
       )),
-      ClassToggle = <div className='class-toggle'
-                         onClick={ (e) => this.toggleWillPlayClass(e) }>
-                      <h1>{ willPlayText }</h1>
-                    </div>
+      WillPlayClassToggle = <div className='class-toggle'
+                                 onClick={ (e) => this.toggleWillPlayClass(e) }>
+                              <h1>{ willPlayText }</h1>
+                            </div>,
+      PlaylistReset = <button className='playlist-reset'
+                              onClick={ (e) => this.clearPlaylist(e) }>
+                        Clear Playlist
+                      </button>
     }
 
     if (( playlist.length - 1 ) === playlistIdx) {
-      ClassToggle = null;
+      WillPlayClassToggle = null;
     }
 
     let SearchedIdxDisplay
@@ -162,7 +173,7 @@ class PlaylistShow extends Component {
             { WillPlayIndex }
           </ul>
 
-          { ClassToggle }
+          { WillPlayClassToggle }
         </div>
 
         <div className='has-played'>
@@ -174,11 +185,12 @@ class PlaylistShow extends Component {
           </ul>
         </div>
 
+        { PlaylistReset }
+
         <SearchBar setSearchIdxClass={this.setSearchIdxClass}
                    requestVideoSearch={this.props.requestVideoSearch} />
 
         { ShowSearchIdxBtn }
-
         { SearchedIdxDisplay }
       </div>
     );
