@@ -6,7 +6,7 @@ class VideoIndexItem extends Component {
   }
 
   render() {
-    const { video, setVidIdx, videoIdx, buttonFn, iconId } = this.props;
+    const { video, setVidIdx, videoIdx, buttonFn, iconId, idxShift } = this.props;
     const iconURLBase = `http://res.cloudinary.com/sawatskeda10/image/upload/`;
     const iconURL = iconURLBase + iconId;
 
@@ -28,7 +28,7 @@ class VideoIndexItem extends Component {
         <img src={iconURL}
              alt='Add/Remove'
              className="add-remove"
-             onClick={ (e) => buttonFn(e, video) } />
+             onClick={ (e) => buttonFn(e, video, idxShift) } />
 
         { PlayNow }
       </div>

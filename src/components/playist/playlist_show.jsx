@@ -28,8 +28,11 @@ class PlaylistShow extends Component {
     this.props.addVideo(video);
   }
 
-  removeVid(event, video) {
+  removeVid(event, video, idxShift) {
     event.preventDefault();
+    const newIdx = this.state.playlistIdx + idxShift;
+
+    this.setState({ playlistIdx: newIdx })
     this.props.removeVideo(video);
   }
 
@@ -87,7 +90,6 @@ class PlaylistShow extends Component {
     this.setState({ searchIdxClass: nextClass,
                     searchIdxText: clickText })
   }
-
   render() {
     const { searchedById, allSearchedIds, playlist,
             populatePlaylist, clearVideoSearch } = this.props;
@@ -96,7 +98,6 @@ class PlaylistShow extends Component {
 
     const currVideoObj = playlist[playlistIdx];
     const currVideoId = (currVideoObj) ? currVideoObj.id : 'XEfDYMngJeE';
-
 
     let WillPlayIndex = <h3>Add to playlist by searching below</h3>;
     let HasPlayedIndex = <h3>List Empty</h3>;
@@ -117,6 +118,7 @@ class PlaylistShow extends Component {
           <VideoIndexItem video={video}
                           key={video.id}
                           iconId={iconId}
+                          idxShift={0}
                           buttonFn={this.removeVid}
                           setVidIdx={this.setVidIdx}
                           videoIdx={playlist.indexOf(video)} />
@@ -128,6 +130,7 @@ class PlaylistShow extends Component {
           <VideoIndexItem video={video}
                           key={video.id}
                           iconId={iconId}
+                          idxShift={-1}
                           buttonFn={this.removeVid}
                           setVidIdx={this.setVidIdx}
                           videoIdx={playlist.indexOf(video)} />
