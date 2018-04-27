@@ -40,28 +40,51 @@
 	      grid-template-columns: 5vw 23.5vw 20vw 30vw 20vw;
 	      grid-template-rows: 27vw 15.5vw 5vw;
 
-				.playlist-reset {
-					grid-row: 2;
+				.playlist-reset, .search-reset {
 					grid-column: 5;
 					z-index: 1;
 
 					justify-self: center;
-					margin-top: 19vh;
 					height: 6vh;
 					width: 12vw;
 
 					font-size: 1.5vw;
-					color: $white;
 					font-style: italic;
 
-					background-color: $transparent;
-					border: 2px solid $white-t;
 					border-radius: 1vh;
+					background-color: $transparent;
+				}
+
+				.playlist-reset {
+					grid-row: 2;
+
+					margin-top: 19vh;
+
+					color: $white;
+
+
+					border: 2px solid $white-t;
 				}
 
 				.playlist-reset:hover {
 					color: $redux-purple-t;
 					background-color: $white-t;
+				}
+
+			  .search-reset {
+					grid-row: 3;
+					z-index: 3;
+
+					align-self: center;
+
+					border: 2px solid $youtube-black-t;
+					color: $youtube-black-t;
+				}
+
+				.search-reset:hover {
+					color: $youtube-red;
+					background-color: $white-t;
+					border: 2px solid $youtube-black-t;
 				}
 	    }
 		}
