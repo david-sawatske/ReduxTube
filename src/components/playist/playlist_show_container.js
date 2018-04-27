@@ -2,7 +2,8 @@ import { connect } from 'react-redux';
 
 import { addVideo, removeVideo,
          populatePlaylist } from '../../actions/playlist_actions';
-import { requestVideoSearch } from '../../actions/search_actions';
+import { requestVideoSearch,
+         clearVideoSearch } from '../../actions/search_actions';
 
 import PlaylistShow from './playlist_show';
 
@@ -15,6 +16,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   populatePlaylist: videoArray => dispatch(populatePlaylist(videoArray)),
   requestVideoSearch: term => dispatch(requestVideoSearch(term)),
+  clearVideoSearch: () => dispatch(clearVideoSearch()),
   removeVideo: video => dispatch(removeVideo(video)),
   addVideo: video => dispatch(addVideo(video)),
 });

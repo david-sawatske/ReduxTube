@@ -38,6 +38,11 @@ class PlaylistShow extends Component {
     this.props.populatePlaylist([]);
   }
 
+  clearSearch(event) {
+    event.preventDefault();
+    this.props.clearVideoSearch();
+  }
+
   setVidIdx(event, newVidIdx) {
     if (event) {
       event.preventDefault();
@@ -84,7 +89,8 @@ class PlaylistShow extends Component {
   }
 
   render() {
-    const { searchedById, allSearchedIds, playlist, populatePlaylist } = this.props;
+    const { searchedById, allSearchedIds, playlist,
+            populatePlaylist, clearVideoSearch } = this.props;
     const { playlistIdx, willPlayClass, willPlayText,
             searchIdxText, searchIdxClass } = this.state;
 
@@ -130,7 +136,7 @@ class PlaylistShow extends Component {
       WillPlayClassToggle = <div className='class-toggle'
                                  onClick={ (e) => this.toggleWillPlayClass(e) }>
                               <h1>{ willPlayText }</h1>
-                            </div>,
+                            </div>
       PlaylistReset = <button className='playlist-reset'
                               onClick={ (e) => this.clearPlaylist(e) }>
                         Clear Playlist
@@ -141,8 +147,9 @@ class PlaylistShow extends Component {
       WillPlayClassToggle = null;
     }
 
-    let SearchedIdxDisplay
+    let SearchReset;
     let ShowSearchIdxBtn
+    let SearchedIdxDisplay
     if (allSearchedIds.length > 0) {
       SearchedIdxDisplay = <SearchedIndex searchIdxClass={searchIdxClass}
                                           allSearchedIds={allSearchedIds}
@@ -153,6 +160,11 @@ class PlaylistShow extends Component {
                                   onClick={ (e) => this.setSearchIdxClass(e) } >
                             { searchIdxText}
                           </button>
+
+      SearchReset = <button className='search-reset'
+                            onClick={ (e) => this.clearSearch(e) }>
+                      Clear Search
+                    </button>
     }
 
     const isWelcome = ( currVideoObj ) ? false : true;
@@ -185,6 +197,7 @@ class PlaylistShow extends Component {
           </ul>
         </div>
 
+        { SearchReset }
         { PlaylistReset }
 
         <SearchBar setSearchIdxClass={this.setSearchIdxClass}
