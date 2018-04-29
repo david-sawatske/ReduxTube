@@ -38,6 +38,8 @@ class PlaylistShow extends Component {
 
   clearPlaylist(event) {
     event.preventDefault();
+
+    this.setVidIdx(event, 0);
     this.props.populatePlaylist([]);
   }
 
@@ -90,6 +92,7 @@ class PlaylistShow extends Component {
     this.setState({ searchIdxClass: nextClass,
                     searchIdxText: clickText })
   }
+
   render() {
     const { searchedById, allSearchedIds, playlist,
             populatePlaylist, clearVideoSearch } = this.props;
@@ -178,6 +181,7 @@ class PlaylistShow extends Component {
                                  isWelcome={isWelcome}
                                  videoId={currVideoId} />
                        </div>;
+
     return (
       <div className='playlist-container'>
         { LivePlayer }
