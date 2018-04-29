@@ -75,6 +75,12 @@ class Player extends React.Component {
   render() {
     const videoArray = [
       {
+        "id": "hs86eBCT4dI",
+        "title": "Stunning Blooming Flowers & Relax Music - 2 Hours Timelapse - Color Therapy - Sleep Music - HD 1080P",
+        "description": "Relaxing music and Beautiful Blooming Flowers such as Roses, Peony, Orchid, Lily, Weigela Florida Flower, Apricot Flower, Quince Flower, Japanese Crabapple. Helps Relax & Fall Asleep FAST!...",
+        "thumbnail": "https://i.ytimg.com/vi/hs86eBCT4dI/hqdefault.jpg"
+      },
+      {
         "id": "8dTzy_N0Pn4",
         "title": "The World is Beautiful (Timelapse & Hyperlapse)",
         "description": "Check out my other videos: Life is Awesome (#3) - http://youtu.be/5D5nsw3PMxc Life is Awesome (#2) - http://youtu.be/3nDGQj8hxn8 Life is Awesome - http://youtu.be/sWRCcJCnB48 Best of Parkour...",
@@ -85,36 +91,6 @@ class Player extends React.Component {
         "title": "HD Video 1080p - Time Lapse with Sunsets, Clouds, Stars",
         "description": "HD Video 1080p - Time Lapse with Sunsets, Clouds, Stars. Dreamlapse is a time lapse film with relaxing music, soothing sunsets, stars & clouds. Buy and download the film in original 4K quality...",
         "thumbnail": "https://i.ytimg.com/vi/8gD_9WPPFb4/hqdefault.jpg"
-      },
-      {
-        "id": "apLevp7QI8E",
-        "title": "Alone in a Peaceful dream - Relaxing music playlist with Beautiful time-lapse videos [+1 Hour]",
-        "description": "Calm and inspirational relaxing music pieces that might fit your studying, thinking or mental work. This is what heaven would sound like. 1- 0:00 Extremely loud and incredibly close -...",
-        "thumbnail": "https://i.ytimg.com/vi/apLevp7QI8E/hqdefault.jpg"
-      },
-      {
-        "id": "8dTzy_N0Pn4",
-        "title": "The World is Beautiful (Timelapse & Hyperlapse)",
-        "description": "Check out my other videos: Life is Awesome (#3) - http://youtu.be/5D5nsw3PMxc Life is Awesome (#2) - http://youtu.be/3nDGQj8hxn8 Life is Awesome - http://youtu.be/sWRCcJCnB48 Best of Parkour...",
-        "thumbnail": "https://i.ytimg.com/vi/8dTzy_N0Pn4/hqdefault.jpg"
-      },
-      {
-        "id": "2HuJNI_FOMo",
-        "title": "After Effects Tutorial: Beautiful Timelapse",
-        "description": "Open Description [click 'show more'] for info! Keep the creative mind flowing! Please read more! ---------------------------------------------------- Add my new Snapchat! ➤Snapchat: BehrSnaps...",
-        "thumbnail": "https://i.ytimg.com/vi/2HuJNI_FOMo/hqdefault.jpg"
-      },
-      {
-        "id": "8gD_9WPPFb4",
-        "title": "HD Video 1080p - Time Lapse with Sunsets, Clouds, Stars",
-        "description": "HD Video 1080p - Time Lapse with Sunsets, Clouds, Stars. Dreamlapse is a time lapse film with relaxing music, soothing sunsets, stars & clouds. Buy and download the film in original 4K quality...",
-        "thumbnail": "https://i.ytimg.com/vi/8gD_9WPPFb4/hqdefault.jpg"
-      },
-      {
-        "id": "apLevp7QI8E",
-        "title": "Alone in a Peaceful dream - Relaxing music playlist with Beautiful time-lapse videos [+1 Hour]",
-        "description": "Calm and inspirational relaxing music pieces that might fit your studying, thinking or mental work. This is what heaven would sound like. 1- 0:00 Extremely loud and incredibly close -...",
-        "thumbnail": "https://i.ytimg.com/vi/apLevp7QI8E/hqdefault.jpg"
       },
       {
         "id": "DFEtnhfQcqI",
@@ -127,12 +103,6 @@ class Player extends React.Component {
         "title": "Beautiful Planet Earth || Nature In Motion - Timelapse Compilation 2017 ||  Oddly Satisfying Video",
         "description": "I wanted to create a slightly different compilations of known \"Satisfying Compilation\" I hope I did and appreciate my work put into this video. I invite you to watch in 1440p :) - Watch, rate,...",
         "thumbnail": "https://i.ytimg.com/vi/KgMpKsp23yY/hqdefault.jpg"
-      },
-      {
-        "id": "hs86eBCT4dI",
-        "title": "Stunning Blooming Flowers & Relax Music - 2 Hours Timelapse - Color Therapy - Sleep Music - HD 1080P",
-        "description": "Relaxing music and Beautiful Blooming Flowers such as Roses, Peony, Orchid, Lily, Weigela Florida Flower, Apricot Flower, Quince Flower, Japanese Crabapple. Helps Relax & Fall Asleep FAST!...",
-        "thumbnail": "https://i.ytimg.com/vi/hs86eBCT4dI/hqdefault.jpg"
       },
       {
         "id": "AHrCI9eSJGQ",
