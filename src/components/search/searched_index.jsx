@@ -11,6 +11,13 @@ class SearchedIndex extends Component {
                    disableSearchRight: false };
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.allSearchedIds.length != this.props.allSearchedIds.length ) {
+      this.setState({ startSearchIdx: 0,
+                      disableSearchLeft: true })
+    }
+  }
+
   setSearchIdx(event, direction) {
     if (event) {
       event.preventDefault();
