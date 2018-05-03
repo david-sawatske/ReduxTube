@@ -117,9 +117,9 @@ class PlaylistShow extends Component {
       const iconId = "v1524351089/trash_lqysey.png";
 
       WillPlayIndex = beforePlaying.map(video => (
-        <li ref="hovered">
+        <li ref="hovered"
+            key={video.id} >
           <VideoIndexItem video={video}
-                          key={video.id}
                           iconId={iconId}
                           idxShift={0}
                           buttonFn={this.removeVid}
@@ -129,9 +129,8 @@ class PlaylistShow extends Component {
       )),
       HasPlayedIndex =
       afterPlaying.map(video => (
-        <li>
+        <li key={video.id}>
           <VideoIndexItem video={video}
-                          key={video.id}
                           iconId={iconId}
                           idxShift={-1}
                           buttonFn={this.removeVid}
