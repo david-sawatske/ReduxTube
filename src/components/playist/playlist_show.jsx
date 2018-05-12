@@ -74,7 +74,8 @@ class PlaylistShow extends Component {
 
   setSearchIdxClass(event, booShow) {
     if (booShow) {
-      this.setState({ searchIdxClass: 'searched-show' })
+      this.setState({ searchIdxText: 'Hide Results',
+                      searchIdxClass: 'searched-show' })
       return
     }
 
@@ -180,7 +181,7 @@ class PlaylistShow extends Component {
                                  isWelcome={isWelcome}
                                  videoId={currVideoId} />
                        </div>;
-
+console.log(this.state.clickText);
     return (
       <div className='playlist-container'>
         { LivePlayer }
