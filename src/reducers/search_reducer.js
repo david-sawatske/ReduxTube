@@ -11,7 +11,10 @@ const searchedById = (state = {}, action) => {
 
   switch (action.type) {
   case RECEIVE_VIDEO_SEARCH:
-    return merge({}, getSearchData(action.searchResults.items).byId, state)
+    const { searchResults, playlistIds } = action;
+    const { items } = searchResults;
+
+    return merge({}, getSearchData(items, playlistIds).byId, state)
   case VIDEO_ADD:
     return omit(state, action.video.id);
   case VIDEO_REMOVE:
@@ -30,7 +33,10 @@ const allSearchedIds = (state = [], action) => {
 
   switch (action.type) {
   case RECEIVE_VIDEO_SEARCH:
-    return union([], getSearchData(action.searchResults.items).allIds, state)
+    const { searchResults, playlistIds } = action;
+    const { items } = searchResults;
+
+    return union([], getSearchData(items, playlistIds).allIds, state)
   case VIDEO_ADD:
     return state.filter( videoId => videoId != action.video.id);
   case VIDEO_REMOVE:
@@ -43,7 +49,7 @@ const allSearchedIds = (state = [], action) => {
 };
 
 // START selectors //
-const getSearchData = dataArray => {
+const getSearchData = (dataArray, playlistIds = []) => {
   const byId = {};
   const allIds = [];
 
@@ -51,12 +57,14 @@ const getSearchData = dataArray => {
     if (obj.id) {
       const vidId = (obj.id.videoId);
 
-      allIds.push(vidId);
+      if (!playlistIds.includes(vidId)) {
+        allIds.push(vidId);
 
-      byId[vidId] = { ["id"]: vidId,
-                      ["title"]: obj.snippet.title,
-                      ["description"]: obj.snippet.description,
-                      ["thumbnail"]: obj.snippet.thumbnails.high.url }
+        byId[vidId] = { ["id"]: vidId,
+                        ["title"]: obj.snippet.title,
+                        ["description"]: obj.snippet.description,
+                        ["thumbnail"]: obj.snippet.thumbnails.high.url }
+      }
     }
   })
 
@@ -71,6 +79,5 @@ const SearchReducer = combineReducers({
   searchedById,
   allSearchedIds
 });
-
 
 export default SearchReducer;
