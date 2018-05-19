@@ -181,7 +181,7 @@ class PlaylistShow extends Component {
                                  isWelcome={isWelcome}
                                  videoId={currVideoId} />
                        </div>;
-console.log(this.state.clickText);
+
     return (
       <div className='playlist-container'>
         { LivePlayer }
